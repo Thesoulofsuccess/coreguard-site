@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coreguard | Building Protection &amp; Surface Systems</title>
-<meta name="description" content="Coreguard engineers building protection and surface systems: waterproofing, epoxy and PU flooring, decorative and permeable surfaces. Diagnosis first, documented work.">
+<title>Coreguard | Designed Surfaces, Building Protection &amp; Permeable Surfaces</title>
+<meta name="description" content="Coreguard: designed surfaces, building protection and permeable surfaces. Decorative and specialist flooring, waterproofing and water-sensitive external surfaces, engineered for how spaces are used.">
 <link rel="icon" href="./assets/coreguard-logo.png">
 <script src="./vendor/react.production.min.js"></script>
 <script src="./vendor/react-dom.production.min.js"></script>
@@ -17,10 +17,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,300;6..72,400&amp;display=swap">
   <style>
+    html, body { margin: 0; padding: 0; background: #0e0f10; }
     .cg {
       --g950: #0e0f10; --g900: #16181a; --g800: #202326; --g600: #3a3e43;
       --m50: #f4f1ec; --m100: #ebe6de; --m200: #dbd4c8; --m300: #b9b0a3; --m400: #8a8277;
       --paper: #fbfaf7; --ink: #131416; --muted: #5d5852; --water: #4fb3df; --heat: #e8a032; --signal: #d63b25;
+      --p1: #b07a4a; --p2: #d63b25; --p3: #3f9fcb; --soil: #6b5743;
       --ll: rgba(19, 20, 22, 0.12); --ld: rgba(236, 231, 222, 0.12);
       --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -30,7 +32,6 @@
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
       padding-top: var(--hdr); overflow-x: clip;
     }
-    html, body { margin: 0; padding: 0; background: #0e0f10; }
     .cg * { box-sizing: border-box; }
     .cg img { max-width: 100%; }
     .cg h1, .cg h2, .cg h3, .cg h4 { margin: 0; font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; }
@@ -40,10 +41,10 @@
     .cg :focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
     .cg [id] { scroll-margin-top: var(--hdr); }
     .wrap { padding-left: var(--gut); padding-right: var(--gut); }
-    .sec { padding-top: clamp(88px, 10vw, 152px); padding-bottom: clamp(88px, 10vw, 152px); }
+    .sec { padding-top: clamp(88px, 10vw, 148px); padding-bottom: clamp(88px, 10vw, 148px); }
     .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5; font-weight: 400; }
     .serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
-    .logo { display: block; width: auto; aspect-ratio: 945 / 190; object-fit: contain; flex: none; }
+    .logo { display: block; width: auto; aspect-ratio: 945 / 192; object-fit: contain; flex: none; }
     .red { color: var(--signal); }
     .b2 { display: block; font-weight: 300; color: var(--muted); }
     .dark { background: var(--g950); color: var(--m50); }
@@ -51,31 +52,28 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 0 20px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .btn .ar { transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1); }
     .btn:hover .ar { transform: translateX(4px); }
-    .btn-red { background: var(--signal); border-color: var(--signal); color: #fff; }
-    .btn-red:hover { background: var(--ink); border-color: var(--ink); }
-    .dark .btn-red:hover { background: var(--m50); border-color: var(--m50); color: var(--ink); }
-    .btn-ink { background: var(--ink); border-color: var(--ink); color: var(--m50); }
-    .btn-ink:hover { background: var(--signal); border-color: var(--signal); }
     .btn-line:hover { background: var(--m50); border-color: var(--m50); color: var(--ink); }
-    /* button colours must beat the generic ".cg a { color: inherit }" rule */
-    .cg a.btn-red, .cg button.btn-red { color: #fff; }
+    .light .btn-line:hover, .btn-line.on-light:hover { background: var(--ink); border-color: var(--ink); color: var(--m50); }
+    .cg a.btn-red, .cg button.btn-red { background: var(--signal); border-color: var(--signal); color: #fff; }
     .cg a.btn-red:hover, .cg button.btn-red:hover { background: #a92d1a; border-color: #a92d1a; color: #fff; }
-    .cg a.btn-ink, .cg button.btn-ink { color: var(--m50); }
+    .cg a.btn-ink, .cg button.btn-ink { background: var(--ink); border-color: var(--ink); color: var(--m50); }
     .cg a.btn-ink:hover, .cg button.btn-ink:hover { background: var(--signal); border-color: var(--signal); color: #fff; }
 
-    /* section head — shared skeleton, varied per section */
     .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 24px clamp(24px, 5vw, 80px); align-items: start; }
     .tag { display: flex; flex-direction: column; gap: 4px; padding-top: 12px; border-top: 1px solid var(--ink); }
     .dark .tag { border-top-color: var(--ld); }
     .tag .mono:first-child { color: var(--signal); }
     .tag .mono + .mono { color: var(--muted); }
     .dark .tag .mono + .mono { color: var(--m400); }
+    .tag .pil { display: inline-flex; align-items: center; gap: 8px; }
+    .tag .pil i { width: 10px; height: 10px; border-radius: 50%; display: block; }
     .head h2 { font-size: clamp(38px, 5vw, 80px); }
-    .lead { font-family: var(--serif); font-size: clamp(19px, 1.6vw, 24px); line-height: 1.42; color: var(--muted); max-width: 46ch; margin-top: 22px; letter-spacing: -0.01em; }
+    .lead { font-family: var(--serif); font-size: clamp(19px, 1.6vw, 24px); line-height: 1.42; color: var(--muted); max-width: 48ch; margin-top: 22px; letter-spacing: -0.01em; }
     .dark .lead { color: var(--m300); }
-
     .rv { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
     .rv.in { opacity: 1; transform: none; }
+    .flow { animation: cg-flow 1.4s linear infinite; }
+    @keyframes cg-flow { to { stroke-dashoffset: -14; } }
 
     /* ---------- HEADER ---------- */
     .hdr { position: fixed; z-index: 50; top: 0; left: 0; right: 0; height: var(--hdr); background: var(--paper); border-bottom: 1px solid var(--ll); display: flex; align-items: center; gap: 20px; }
@@ -85,14 +83,14 @@
     .idx-b { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 12px; border: 1px solid var(--ll); background: transparent; cursor: pointer; color: var(--ink); }
     .idx-b .n { color: var(--signal); }
     .idx-b .car { font-size: 9px; opacity: 0.6; }
-    .idx-m { position: absolute; top: calc(100% + 8px); left: 0; min-width: 280px; background: var(--paper); border: 1px solid var(--ll); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.3); padding: 6px; display: flex; flex-direction: column; }
+    .idx-m { position: absolute; top: calc(100% + 8px); left: 0; min-width: 290px; background: var(--paper); border: 1px solid var(--ll); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.3); padding: 6px; display: flex; flex-direction: column; }
     .idx-m a { display: grid; grid-template-columns: 36px minmax(0, 1fr); padding: 10px; text-decoration: none; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
     .idx-m a:hover { background: var(--m100); }
     .idx-m a span:first-child { color: var(--signal); font-family: var(--mono); font-size: 11px; padding-top: 3px; }
-    .aud { display: flex; gap: 2px; margin-left: auto; padding: 3px; background: var(--m100); }
-    .aud a { text-decoration: none; font-size: 13.5px; font-weight: 500; letter-spacing: -0.01em; padding: 7px 12px; color: var(--muted); cursor: pointer; }
-    .aud a:hover { background: var(--paper); color: var(--ink); }
-    .aud a.on { background: var(--ink); color: var(--m50); }
+    .pnav { display: flex; gap: 24px; margin-left: auto; }
+    .pnav a { display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); opacity: 0.75; }
+    .pnav a:hover { opacity: 1; }
+    .pnav a i { width: 8px; height: 8px; border-radius: 50%; display: block; }
     .hdr-act { display: flex; gap: 8px; align-items: center; }
     .hdr-act .tel { text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: -0.01em; padding: 0 8px; }
     .hdr-act .tel:hover { color: var(--signal); }
@@ -107,102 +105,98 @@
     .proto { position: fixed; z-index: 45; left: 14px; top: calc(var(--hdr) + 12px); background: var(--ink); color: var(--m300); padding: 7px 10px; font-size: 9.5px; pointer-events: none; }
     .proto b { color: var(--signal); font-weight: 500; }
 
-    /* ---------- 01 HERO ---------- */
-    .hero { position: relative; height: calc(100svh - var(--hdr)); min-height: 640px; overflow: hidden; background: var(--g950); --mx: 66%; --my: 42%; --r: 180px; cursor: crosshair; }
-    .hero-under, .hero-surface { position: absolute; inset: 0; }
-    .hero-under svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .hero-surface { background-color: #cec6b9;
-      background-image:
-        radial-gradient(circle at center, rgba(40, 36, 30, 0.5) 0 3.5px, rgba(40, 36, 30, 0.1) 5px, transparent 6px),
-        linear-gradient(90deg, transparent calc(100% - 1px), rgba(40, 36, 30, 0.16) 0),
-        linear-gradient(0deg, transparent calc(100% - 1px), rgba(40, 36, 30, 0.1) 0),
-        radial-gradient(ellipse at 25% 15%, rgba(255, 255, 255, 0.5), transparent 60%),
-        radial-gradient(ellipse at 85% 95%, rgba(60, 54, 46, 0.32), transparent 60%),
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.22  0 0 0 0 0.19  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      background-size: 160px 120px, 480px 360px, 480px 360px, 100% 100%, 100% 100%, 220px 220px;
-      background-position: 80px 60px, 0 0, 0 0, 0 0, 0 0, 0 0;
-      -webkit-mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), transparent calc(var(--r) - 1.5px), #000 var(--r));
-      mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), transparent calc(var(--r) - 1.5px), #000 var(--r));
-    }
-    .hl { position: absolute; left: var(--gut); right: var(--gut); top: clamp(48px, 9vh, 112px); }
-    .hl .eb { display: block; margin-bottom: 24px; }
-    .hl h1 { font-size: clamp(52px, 8.4vw, 148px); letter-spacing: -0.055em; line-height: 0.9; }
-    .hl .l2 { display: block; font-weight: 300; letter-spacing: -0.05em; }
-    .hl-s .eb { color: rgba(19, 20, 22, 0.6); }
-    .hl-s h1 { color: var(--ink); }
-    .hl-s .l2 { color: rgba(19, 20, 22, 0.52); }
-    .hl-u .eb { color: var(--water); }
-    .hl-u h1 { color: transparent; -webkit-text-stroke: 1px rgba(236, 231, 222, 0.85); }
-    .hl-u .l2 { -webkit-text-stroke: 0; color: var(--water); }
-    .lens { position: absolute; left: var(--mx); top: var(--my); width: calc(var(--r) * 2); height: calc(var(--r) * 2); transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(236, 231, 222, 0.75); pointer-events: none; box-shadow: 0 0 0 1px rgba(14, 15, 16, 0.35), 0 40px 90px rgba(0, 0, 0, 0.35); }
-    .lens i { position: absolute; background: rgba(236, 231, 222, 0.6); }
-    .lens i:nth-child(1) { left: 50%; top: -10px; height: 20px; width: 1px; }
-    .lens i:nth-child(2) { left: 50%; bottom: -10px; height: 20px; width: 1px; }
-    .lens i:nth-child(3) { top: 50%; left: -10px; width: 20px; height: 1px; }
-    .lens i:nth-child(4) { top: 50%; right: -10px; width: 20px; height: 1px; }
-    .under-flow path { animation: cg-flow 1.6s linear infinite; }
-    @keyframes cg-flow { to { stroke-dashoffset: -16; } }
-    .hero-foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; background: rgba(14, 15, 16, 0.95); color: var(--m50); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 16px 48px; align-items: center; padding-top: 22px; padding-bottom: 22px; }
-    .hero-foot .serif { color: var(--m300); font-size: 18px; line-height: 1.4; max-width: 40ch; }
-    .choose { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--ld); border: 1px solid var(--ld); }
-    .choose a { background: var(--g950); padding: 14px 16px; text-decoration: none; display: flex; flex-direction: column; gap: 2px; transition: background 0.2s; cursor: pointer; }
-    .choose a:hover { background: var(--signal); }
-    .choose a .mono { color: var(--m400); }
-    .choose a:hover .mono { color: rgba(255, 255, 255, 0.8); }
-    .choose a b { font-size: 19px; font-weight: 500; letter-spacing: -0.03em; display: flex; justify-content: space-between; }
-    .key { position: absolute; right: var(--gut); top: clamp(48px, 9vh, 112px); display: flex; flex-direction: column; gap: 8px; color: rgba(19, 20, 22, 0.65); background: rgba(251, 250, 247, 0.85); padding: 12px 14px; }
-    .key span { display: flex; align-items: center; gap: 10px; }
-    .key i { width: 16px; height: 3px; display: block; }
+    /* ---------- 01 HERO: three worlds ---------- */
+    .hero { background: var(--g950); color: var(--m50); padding-top: clamp(32px, 5vh, 64px); }
+    .idx-b, .pnav a, .hdr-act .tel { white-space: nowrap; }
+    @media (max-width: 1400px) { .hdr-act .tel { display: none; } .pnav { gap: 18px; } }
+    @media (max-width: 1240px) { .pnav a:last-child { display: none; } .idx-b .lbl { display: none; } }
+    .hero-top { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; padding-bottom: clamp(24px, 3.4vh, 40px); }
+    .hero h1 { font-size: clamp(46px, 6vw, 104px); letter-spacing: -0.055em; line-height: 0.92; }
+    .hero h1 .l2 { display: block; font-weight: 300; color: var(--m400); }
+    .hero .eb { display: block; color: var(--m400); margin-bottom: 22px; }
+    .hero-top .serif { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.42; color: var(--m300); max-width: 42ch; }
+    .tri { display: flex; height: clamp(380px, 50vh, 560px); border-top: 1px solid var(--ld); }
+    .tp { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; text-decoration: none; color: var(--m50); border-right: 1px solid var(--ld); transition: flex-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); display: block; }
+    .tp:last-child { border-right: 0; }
+    .tri:hover .tp { flex-grow: 0.8; }
+    .tri .tp:hover { flex-grow: 1.6; }
+    .tp-art { position: absolute; inset: 0; }
+    .tp-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .tp-1 .tp-art { background: url(./assets/floor-hero.png) center 65% / cover; }
+    .tp-1 .tp-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 15, 16, 0.1) 30%, rgba(14, 15, 16, 0.92)); }
+    .tp-2 .tp-art { background: var(--g900); }
+    .tp-3 .tp-art { background: #12191d; }
+    .tp-2 .tp-art::after, .tp-3 .tp-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(14, 15, 16, 0.88) 72%); }
+    .tp-txt { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px clamp(20px, 2.4vw, 36px); display: flex; flex-direction: column; gap: 10px; }
+    .tp-txt .mono { display: flex; align-items: center; gap: 10px; }
+    .tp-txt .mono i { width: 10px; height: 10px; border-radius: 50%; }
+    .tp-txt h3 { font-size: clamp(28px, 2.6vw, 44px); letter-spacing: -0.045em; }
+    .tp-txt p { font-size: 15.5px; line-height: 1.5; color: var(--m200); max-width: 34ch; }
+    .tp-txt .go { display: flex; align-items: center; gap: 10px; margin-top: 6px; color: var(--m50); }
+    .tp-txt .go span { transition: transform 0.3s; }
+    .tp:hover .go span { transform: translateX(6px); }
+    .rain path { animation: cg-rain 1.1s linear infinite; }
+    @keyframes cg-rain { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -40; } }
+    .hero-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 0; border-top: 1px solid var(--ld); }
+    .hero-strip a { padding: 16px var(--gut) 16px 0; text-decoration: none; color: var(--m300); display: flex; flex-direction: column; gap: 2px; border-right: 1px solid var(--ld); padding-left: var(--gut); }
+    .hero-strip a:first-child { padding-left: var(--gut); }
+    .hero-strip a b { color: var(--m50); font-weight: 500; font-size: 17px; letter-spacing: -0.02em; }
+    .hero-strip a:hover b { color: var(--signal); }
+    .hero-strip .cta { display: flex; align-items: center; padding: 0 var(--gut); }
 
-    /* ---------- 02 SYSTEM (click-through layer study) ---------- */
-    .sys-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; align-items: center; }
-    .stage { position: relative; height: clamp(380px, 46vw, 560px); display: flex; align-items: center; justify-content: center; perspective: 1800px; }
-    .stack { position: relative; width: min(340px, 64vw); aspect-ratio: 1; transform-style: preserve-3d; transform: rotateX(60deg) rotateZ(-38deg); }
-    .ly { position: absolute; inset: 0; transform: translateZ(calc(var(--i) * 44px)); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12); transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s; cursor: pointer; }
-    .ly.dim { opacity: 0.28; }
-    .ly.on { transform: translateZ(calc(var(--i) * 44px + 26px)); box-shadow: 0 0 0 2px var(--m50), 0 0 60px rgba(214, 59, 37, 0.25); }
-    .ly-0 { background: #5f5b55; background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1.5px), radial-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1.5px); background-size: 9px 9px, 13px 13px; }
-    .ly-1 { background: rgba(232, 160, 50, 0.65); }
-    .ly-2 { background: var(--signal); }
-    .ly-3 { background-image: linear-gradient(rgba(236, 231, 222, 0.75) 1px, transparent 1px), linear-gradient(90deg, rgba(236, 231, 222, 0.75) 1px, transparent 1px); background-size: 22px 22px; background-color: rgba(255, 255, 255, 0.04); }
-    .ly-4 { background: linear-gradient(135deg, #f2eee7, #c9c2b6); }
-    .layers { border-top: 1px solid var(--ld); }
-    .lb { width: 100%; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 14px 0; border: 0; border-bottom: 1px solid var(--ld); background: none; color: var(--m400); cursor: pointer; text-align: left; transition: color 0.2s; }
-    .lb:hover { color: var(--m50); }
-    .lb .t { font-size: 19px; font-weight: 500; letter-spacing: -0.03em; }
-    .lb i { width: 14px; height: 14px; display: block; }
-    .lb.on { color: var(--m50); }
-    .lb.on .mono { color: var(--signal); }
-    .ldet { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 28px; }
-    .ldet .serif { grid-column: 1 / -1; font-size: 21px; line-height: 1.4; color: var(--m200); }
-    .ldet dt { color: var(--signal); margin-bottom: 6px; }
-    .ldet dd { margin: 0; font-size: 15px; color: var(--m300); line-height: 1.5; }
-    .sys-note { margin-top: 24px; color: var(--m400); }
+    /* ---------- 02 DESIGNED SURFACES ---------- */
+    .ds { background: var(--m50); }
+    .lib { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; align-items: start; }
+    .fin-list { border-top: 1px solid var(--ink); }
+    .fin { width: 100%; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border: 0; border-bottom: 1px solid var(--ll); background: none; cursor: pointer; text-align: left; color: var(--muted); }
+    .fin .sw { width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); }
+    .fin .t { font-size: 18px; font-weight: 500; letter-spacing: -0.025em; color: var(--ink); line-height: 1.2; }
+    .fin .k { display: block; margin-top: 2px; }
+    .fin:hover .t { color: var(--p1); }
+    .fin.on { color: var(--ink); }
+    .fin.on .t { color: var(--p1); }
+    .fin.on .sw { box-shadow: 0 0 0 2px var(--m50), 0 0 0 3px var(--p1); }
+    .fin .arr { opacity: 0; transition: opacity 0.2s; color: var(--p1); }
+    .fin.on .arr { opacity: 1; }
+    .spec-card { position: sticky; top: calc(var(--hdr) + 24px); }
+    .sample { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--m200); }
+    .sample .tex { position: absolute; inset: 0; }
+    .sample .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .sample .cap { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--muted); padding: 6px 10px; }
+    .sample .disc { position: absolute; right: 18px; bottom: 18px; width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 0 0 4px var(--paper), 0 20px 40px rgba(0, 0, 0, 0.35); }
+    .spec-body { padding-top: 22px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px 28px; }
+    .spec-body h3 { font-size: clamp(28px, 2.6vw, 42px); grid-column: 1 / -1; }
+    .spec-body .serif { grid-column: 1 / -1; font-size: 19px; line-height: 1.45; color: var(--muted); max-width: 52ch; }
+    .spec-body dt { color: var(--p1); margin-bottom: 6px; }
+    .spec-body dd { margin: 0; font-size: 15px; line-height: 1.5; }
+    .spec-body .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .spec-body .chips span { font-size: 13.5px; padding: 5px 10px; border: 1px solid var(--ll); background: var(--paper); }
+    .spaces { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 72px; border-top: 1px solid var(--ink); }
+    .spaces div { padding: 16px 16px 0 0; }
+    .spaces div + div { padding-left: 16px; border-left: 1px solid var(--ll); }
+    .spaces b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.03em; margin: 6px 0 4px; }
+    .spaces p { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .spaces .mono { color: var(--p1); }
+    .field { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 8px; margin-top: 64px; }
+    .field figure { position: relative; margin: 0; overflow: hidden; background: var(--m200); }
+    .field figure:first-child { grid-row: 1 / 3; }
+    .field img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
+    .field figure:hover img { transform: scale(1.04); }
+    .field figcaption { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--muted); padding: 6px 10px; font-size: 9.5px; }
+    .field-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 72px; padding-top: 12px; border-top: 1px solid var(--ll); }
+    .field-h + .field { margin-top: 18px; }
 
-    /* ---------- 03 JOURNEYS ---------- */
-    .jtabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); margin-top: 64px; }
-    .jt { text-align: left; padding: 22px 20px 22px 0; border: 0; background: none; cursor: pointer; color: var(--muted); position: relative; display: flex; flex-direction: column; gap: 4px; }
-    .jt::before { content: ""; position: absolute; left: 0; right: 20px; top: -1px; height: 3px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
-    .jt .t { font-size: clamp(26px, 3.2vw, 52px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; transition: color 0.2s; }
-    .jt:hover .t { color: var(--ink); }
-    .jt.on { color: var(--ink); }
-    .jt.on::before { transform: scaleX(1); }
-    .jt.on .mono { color: var(--signal); }
-    .jbody { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(24px, 4vw, 64px); margin-top: 28px; align-items: stretch; }
-    .jphoto { position: relative; margin: 0; min-height: 420px; background: var(--m200); overflow: hidden; }
-    .jphoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .jphoto figcaption { position: absolute; left: 0; bottom: 0; background: var(--paper); padding: 6px 10px; color: var(--muted); font-size: 9.5px; }
-    .jtxt h3 { font-size: clamp(32px, 3.4vw, 54px); }
-    .jtxt .who { color: var(--muted); margin-top: 10px; display: block; }
-    .jtxt .serif { font-size: clamp(19px, 1.6vw, 23px); line-height: 1.42; margin-top: 22px; max-width: 44ch; }
-    .jcols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 32px; }
-    .jcols .mono { color: var(--signal); display: block; margin-bottom: 10px; }
-    .jcols ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ll); }
-    .jcols li { padding: 10px 0; border-bottom: 1px solid var(--ll); font-size: 15.5px; line-height: 1.4; display: flex; gap: 10px; }
-    .jcols li::before { content: ""; flex: none; width: 5px; height: 5px; background: var(--signal); margin-top: 8px; }
-    .jcta { margin-top: 32px; display: flex; gap: 10px; flex-wrap: wrap; }
+    /* textures */
+    .tx-epoxy { background: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 255, 0.55), transparent 45%), linear-gradient(135deg, #e9e6e1, #c9c4bc 60%, #b9b3aa); }
+    .tx-pu { background: radial-gradient(ellipse at 70% 20%, rgba(255, 255, 255, 0.18), transparent 50%), linear-gradient(160deg, #8f9188, #6f7168); }
+    .tx-terrazzo { background-color: #e4ddd1; background-image: radial-gradient(circle at 20% 30%, #8a6d55 0 3px, transparent 4px), radial-gradient(circle at 70% 60%, #3d3a36 0 4px, transparent 5px), radial-gradient(circle at 45% 80%, #c49a6c 0 2.5px, transparent 3.5px), radial-gradient(circle at 85% 20%, #f4efe7 0 3px, transparent 4px), radial-gradient(circle at 10% 75%, #6b6259 0 2px, transparent 3px); background-size: 38px 34px, 46px 40px, 30px 36px, 42px 30px, 26px 28px; }
+    .tx-flake { background-color: #b9b4ab; background-image: radial-gradient(ellipse 4px 2px at 30% 40%, #2f2d2b 99%, transparent), radial-gradient(ellipse 3px 5px at 70% 30%, #f2ede4 99%, transparent), radial-gradient(ellipse 5px 3px at 50% 75%, #7c6a58 99%, transparent), radial-gradient(ellipse 3px 3px at 15% 80%, #d63b25 99%, transparent); background-size: 22px 20px, 26px 24px, 30px 22px, 48px 44px; }
+    .tx-quartz { background-color: #cfc8bc; background-image: radial-gradient(#fff 0.8px, transparent 1.2px), radial-gradient(#6b6259 0.8px, transparent 1.2px), radial-gradient(#a88f74 0.9px, transparent 1.3px); background-size: 5px 5px, 7px 6px, 9px 8px; background-position: 0 0, 2px 3px, 4px 1px; }
+    .tx-texture { background-color: #a59f95; background-image: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 6px), repeating-linear-gradient(25deg, rgba(0, 0, 0, 0.08) 0 1px, transparent 1px 5px); }
+    .tx-industrial { background: linear-gradient(90deg, transparent 72%, #e8a032 72% 78%, transparent 78%), radial-gradient(ellipse at 40% 30%, rgba(255, 255, 255, 0.2), transparent 55%), linear-gradient(160deg, #6f7378, #55595e); }
+    .tx-outdoor { background-color: #9c8f7c; background-image: radial-gradient(circle, #c9b89c 0 2.4px, transparent 3px), radial-gradient(circle, #6d604f 0 2px, transparent 2.6px), radial-gradient(circle, #e2d6c1 0 1.6px, transparent 2.2px); background-size: 9px 9px, 11px 10px, 7px 8px; background-position: 0 0, 4px 5px, 2px 3px; }
 
-    /* ---------- 04 MAP ---------- */
+    /* ---------- 03 BUILDING PROTECTION (map) ---------- */
     .map-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; align-items: start; }
     .map-art { position: relative; border: 1px solid var(--ld); background: linear-gradient(var(--ld) 1px, transparent 1px) 0 0 / 40px 40px, linear-gradient(90deg, var(--ld) 1px, transparent 1px) 0 0 / 40px 40px, var(--g900); }
     .map-art svg { display: block; width: 100%; height: auto; }
@@ -216,22 +210,127 @@
     .hot { position: absolute; transform: translate(-50%, -50%); width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--m50); background: var(--g950); color: var(--m50); font-family: var(--mono); font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.25s, border-color 0.2s; }
     .hot:hover { transform: translate(-50%, -50%) scale(1.12); border-color: var(--signal); }
     .hot.on { background: var(--signal); border-color: var(--signal); color: #fff; box-shadow: 0 0 0 8px color-mix(in srgb, var(--signal) 22%, transparent); }
+    .hot.pp { border-color: var(--p3); }
+    .hot.pp.on { background: var(--p3); border-color: var(--p3); box-shadow: 0 0 0 8px rgba(63, 159, 203, 0.22); }
+    .hot.ps { border-color: var(--p1); }
+    .hot.ps.on { background: var(--p1); border-color: var(--p1); box-shadow: 0 0 0 8px rgba(176, 122, 74, 0.25); }
+    .map-key { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; color: var(--m400); }
+    .map-key span { display: flex; align-items: center; gap: 8px; }
+    .map-key i { width: 10px; height: 10px; border-radius: 50%; display: block; }
     .tabs { display: none; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
     .tab { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 11px; border: 1px solid var(--ld); background: transparent; color: var(--m200); cursor: pointer; }
     .tab.on { background: var(--m50); color: var(--ink); border-color: var(--m50); }
     .panel .meta { color: var(--m400); display: flex; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--ld); }
+    .panel .meta b { font-weight: 400; }
     .panel h3 { font-size: clamp(32px, 3.2vw, 52px); margin: 22px 0 12px; }
     .panel .serif { color: var(--m300); max-width: 42ch; font-size: 19px; line-height: 1.42; }
-    .panel dl { margin: 26px 0 28px; display: grid; gap: 18px; }
+    .panel dl { margin: 22px 0 26px; display: grid; gap: 16px; }
     .panel dt { color: var(--signal); margin-bottom: 8px; }
     .panel dd { margin: 0; }
     .panel dd ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
     .panel dd li { font-size: 14px; padding: 6px 11px; border: 1px solid var(--ld); color: var(--m100); }
+    .notice { margin: 22px 0 0; padding: 14px 16px; border-left: 2px solid var(--water); background: rgba(79, 179, 223, 0.08); }
+    .notice .mono { color: var(--water); display: block; margin-bottom: 6px; }
+    .notice p { font-size: 16px; line-height: 1.5; color: var(--m100); }
+    .panel-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .panel-rec { color: var(--m400); margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+    .panel-rec i { width: 7px; height: 7px; border-radius: 50%; background: var(--heat); }
 
-    /* ---------- 05 DIAGNOSTIC ---------- */
+    /* ---------- 04 PERMEABLE ---------- */
+    .pm { background: #0f1517; color: var(--m50); }
+    .pm .tag { border-top-color: rgba(99, 178, 214, 0.35); }
+    .pm .b2 { color: #7fa9bb; }
+    .pm-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; align-items: start; }
+    .cut { border: 1px solid rgba(99, 178, 214, 0.25); background: #0b1012; }
+    .cut-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 12px; border-bottom: 1px solid rgba(99, 178, 214, 0.2); }
+    .seg2 { display: inline-flex; border: 1px solid rgba(236, 231, 222, 0.25); }
+    .seg2 button { height: 36px; padding: 0 12px; background: transparent; border: 0; color: var(--m300); cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .seg2 button + button { border-left: 1px solid rgba(236, 231, 222, 0.25); }
+    .seg2 button.on { background: var(--m50); color: var(--ink); }
+    .cut svg { display: block; width: 100%; height: auto; }
+    .cut .g { opacity: 0; transition: opacity 0.5s; }
+    .cut[data-mode="conv"] .g-conv, .cut[data-mode="perm"] .g-perm { opacity: 1; }
+    .cut[data-mode="perm"][data-ty="A"] .g-ta, .cut[data-mode="perm"][data-ty="B"] .g-tb, .cut[data-mode="perm"][data-ty="C"] .g-tc { opacity: 1; }
+    .cut[data-mode="perm"][data-ty="A"] .g-inf, .cut[data-mode="perm"][data-ty="B"] .g-inf { opacity: 1; }
+    .cut[data-mode="perm"][data-ty="B"] .g-inf { opacity: 0.5; }
+    .cut-foot { padding: 12px; border-top: 1px solid rgba(99, 178, 214, 0.2); color: #9fc3d3; font-size: 14.5px; line-height: 1.5; min-height: 72px; }
+    .layers2 { border-top: 1px solid rgba(236, 231, 222, 0.2); }
+    .layers2 div { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(236, 231, 222, 0.12); }
+    .layers2 i { width: 18px; height: 18px; display: block; margin-top: 3px; }
+    .layers2 b { font-weight: 500; font-size: 16px; letter-spacing: -0.02em; display: block; }
+    .layers2 span { font-size: 14px; color: var(--m300); line-height: 1.45; }
+    .decide { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 72px; border-top: 1px solid rgba(236, 231, 222, 0.25); }
+    .decide div { padding: 16px 18px 18px 0; border-bottom: 1px solid rgba(236, 231, 222, 0.1); }
+    .decide div:not(:nth-child(4n+1)) { padding-left: 18px; border-left: 1px solid rgba(236, 231, 222, 0.1); }
+    .decide .mono { color: var(--p3); }
+    .decide b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.03em; margin: 6px 0 4px; }
+    .decide p { font-size: 14px; color: var(--m300); line-height: 1.45; }
+    .poem { margin-top: 80px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 24px clamp(24px, 5vw, 80px); }
+    .poem p.big { font-family: var(--serif); font-size: clamp(28px, 3.4vw, 52px); line-height: 1.12; letter-spacing: -0.02em; max-width: 22ch; }
+    .poem p.big span { color: #7fa9bb; }
+    .poem small { display: block; margin-top: 16px; color: var(--m400); font-size: 13.5px; max-width: 60ch; line-height: 1.5; }
+
+    /* ---------- 05 SYSTEMS (cores by pillar) ---------- */
+    .ptabs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 56px; }
+    .ptabs button { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border: 1px solid var(--ld); background: transparent; color: var(--m300); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .ptabs button i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+    .ptabs button.on { background: var(--m50); color: var(--ink); border-color: var(--m50); }
+    .core-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px; margin-top: 88px; align-items: end; min-height: 420px; }
+    .core-it { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .core { position: relative; width: min(112px, 100%); display: flex; flex-direction: column; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); filter: drop-shadow(0 30px 28px rgba(0, 0, 0, 0.5)); }
+    .core-it:hover .core { transform: translateY(-10px); }
+    .core::before { content: ""; position: absolute; left: 0; right: 0; top: -13px; height: 26px; border-radius: 50%; background: var(--top, #ddd); z-index: 2; box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.25); }
+    .cl { position: relative; width: 100%; }
+    .cl::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.42), rgba(255, 255, 255, 0.16) 38%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.5)); }
+    .cl:last-child { border-radius: 0 0 50% 50% / 0 0 13px 13px; overflow: hidden; }
+    .cl.speck { background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1.6px), radial-gradient(rgba(0, 0, 0, 0.35) 1px, transparent 1.6px); background-size: 7px 7px, 11px 11px; }
+    .cl.gran { background-image: radial-gradient(rgba(0, 0, 0, 0.45) 1.4px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 1.2px, transparent 1.8px); background-size: 6px 6px, 9px 8px; }
+    .cl.open { background-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 3px, transparent 3.6px), radial-gradient(circle, rgba(255, 255, 255, 0.18) 2.4px, transparent 3px); background-size: 12px 12px, 14px 13px; }
+    .cl.tile { background-image: linear-gradient(90deg, transparent 46%, rgba(0, 0, 0, 0.25) 46% 50%, transparent 50%); background-size: 40px 100%; }
+    .cl.terr { background-image: radial-gradient(circle, #7d6450 1.6px, transparent 2.2px), radial-gradient(circle, #f4efe7 1.4px, transparent 2px), radial-gradient(circle, #3d3a36 1.4px, transparent 2px); background-size: 9px 8px, 11px 10px, 13px 12px; }
+    .cl.flk { background-image: radial-gradient(ellipse 3px 1.6px, #2f2d2b 99%, transparent), radial-gradient(ellipse 2px 3px, #f2ede4 99%, transparent); background-size: 10px 9px, 12px 11px; }
+    .core-cap { width: 100%; }
+    .core-cap .mono { display: flex; align-items: center; gap: 8px; }
+    .core-cap .mono i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .core-cap h3 { font-size: 20px; letter-spacing: -0.03em; line-height: 1.15; margin-top: 6px; }
+    .core-it ol { list-style: none; margin: 0; padding: 0; width: 100%; border-top: 1px solid var(--ld); }
+    .core-it li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--ld); font-size: 12.5px; color: var(--m300); line-height: 1.35; }
+    .core-it li i { width: 9px; height: 9px; flex: none; }
+
+    /* ---------- 06 JOURNEYS ---------- */
+    .jtabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); margin-top: 64px; }
+    .jt { text-align: left; padding: 22px 20px 22px 0; border: 0; background: none; cursor: pointer; color: var(--muted); position: relative; display: flex; flex-direction: column; gap: 4px; }
+    .jt::before { content: ""; position: absolute; left: 0; right: 20px; top: -1px; height: 3px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .jt .t { font-size: clamp(26px, 3.2vw, 52px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+    .jt:hover .t { color: var(--ink); }
+    .jt.on { color: var(--ink); }
+    .jt.on::before { transform: scaleX(1); }
+    .jt.on .mono { color: var(--signal); }
+    .jintro { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 24px clamp(24px, 5vw, 80px); }
+    .jintro .serif { font-size: clamp(19px, 1.6vw, 23px); line-height: 1.42; max-width: 50ch; }
+    .jmatrix { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--ll); border: 1px solid var(--ll); margin-top: 36px; }
+    .jcol { background: var(--paper); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .jcol .mono { display: flex; align-items: center; gap: 8px; }
+    .jcol .mono i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+    .jcol h4 { font-size: 24px; letter-spacing: -0.035em; line-height: 1.1; }
+    .jcol ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ll); }
+    .jcol li { padding: 9px 0; border-bottom: 1px solid var(--ll); font-size: 15px; line-height: 1.4; }
+    .jcol a { margin-top: auto; align-self: flex-start; }
+
+    /* ---------- 07 DIAGNOSTIC ---------- */
     .dx { background: var(--m100); }
-    .chap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ll); margin: 56px 0 24px; }
-    .chap button { position: relative; text-align: left; padding: 16px 14px 14px 0; background: none; border: 0; color: var(--m400); cursor: pointer; display: flex; flex-direction: column; gap: 2px; transition: color 0.25s; }
+    .assess { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--ll); border: 1px solid var(--ll); margin-top: 56px; }
+    .assess div { background: var(--paper); padding: 22px; }
+    .assess .mono { display: flex; align-items: center; gap: 8px; }
+    .assess .mono i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+    .assess h4 { font-size: 21px; letter-spacing: -0.03em; margin: 10px 0 10px; line-height: 1.15; }
+    .assess p { font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .ex-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 64px; padding-top: 12px; border-top: 1px solid var(--ink); }
+    .ex-h h3 { font-size: clamp(24px, 2.4vw, 36px); letter-spacing: -0.035em; }
+    .pend { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; margin: 20px 0; border: 1px dashed var(--m400); background: var(--paper); font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+    .pend .mono { color: var(--heat); white-space: nowrap; padding-top: 2px; }
+    .chap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ll); margin: 0 0 24px; }
+    .chap button { position: relative; text-align: left; padding: 16px 14px 14px 0; background: none; border: 0; color: var(--m400); cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
     .chap button::before { content: ""; position: absolute; left: 0; right: 14px; top: -1px; height: 2px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
     .chap button.done { color: var(--muted); }
     .chap button.done::before { transform: scaleX(1); opacity: 0.4; }
@@ -243,27 +342,26 @@
     .dsheet { background: var(--paper); border: 1px solid var(--ink); display: flex; flex-direction: column; }
     .dsheet-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--ll); color: var(--muted); gap: 10px; }
     .dsheet-top b { color: var(--ink); font-weight: 500; }
+    .ill-tag { display: inline-flex; align-items: center; gap: 8px; color: #2a83ad; }
+    .ill-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--water); }
     .draw { background-image: linear-gradient(var(--ll) 1px, transparent 1px), linear-gradient(90deg, var(--ll) 1px, transparent 1px); background-size: 30px 30px; background-position: -1px -1px; }
     .draw svg { display: block; width: 100%; height: auto; }
-    .g { opacity: 0; transition: opacity 0.6s ease; }
+    .dx .g { opacity: 0; transition: opacity 0.6s ease; }
     .dx[data-ch="1"] .g-obs, .dx[data-ch="1"] .g-pond, .dx[data-ch="2"] .g-pond,
     .dx[data-ch="1"] .g-stain, .dx[data-ch="2"] .g-stain,
     .dx[data-ch="2"] .g-inv, .dx[data-ch="3"] .g-sys, .dx[data-ch="4"] .g-sys, .dx[data-ch="5"] .g-sys,
     .dx[data-ch="3"] .g-call, .dx[data-ch="4"] .g-hp, .dx[data-ch="5"] .g-ver { opacity: 1; }
     .dx[data-ch="3"] .g-stain, .dx[data-ch="4"] .g-stain { opacity: 0.35; }
-    .flow { animation: cg-flow 1.4s linear infinite; }
     .narr { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px 28px; padding: 22px; border-top: 1px solid var(--ll); min-height: 360px; align-items: start; position: relative; padding-bottom: 84px; }
-    .narr .get { margin-top: 14px; }
-    .narr .navb { position: absolute; right: 22px; bottom: 22px; }
     .narr h3 { font-size: clamp(26px, 2.4vw, 36px); margin: 8px 0 12px; }
     .narr .serif { font-size: 18.5px; line-height: 1.45; color: var(--muted); }
     .narr ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ll); }
     .narr li { font-size: 14.5px; padding: 8px 0; border-bottom: 1px solid var(--ll); display: flex; gap: 10px; line-height: 1.4; }
     .narr li::before { content: ""; flex: none; width: 5px; height: 5px; background: var(--signal); margin-top: 7px; }
-    .get { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .get { margin-top: 14px; }
     .get .mono { color: var(--muted); }
     .get b { color: var(--ink); font-weight: 500; }
-    .navb { display: flex; gap: 6px; }
+    .navb { display: flex; gap: 6px; position: absolute; right: 22px; bottom: 22px; }
     .navb button { width: 44px; height: 44px; border: 1px solid var(--ink); background: transparent; cursor: pointer; color: var(--ink); font-size: 16px; }
     .navb button:hover { background: var(--ink); color: var(--paper); }
     .navb button[disabled] { opacity: 0.25; cursor: default; background: transparent; color: var(--ink); }
@@ -289,25 +387,100 @@
     .file-foot p { font-size: 11.5px; line-height: 1.45; color: var(--m400); max-width: 30ch; }
     .stamp { width: 92px; height: 92px; flex: none; border-radius: 50%; border: 1.5px dashed var(--water); color: var(--water); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.35; text-align: center; transform: rotate(-8deg); }
     .stamp b { font-size: 10.5px; font-weight: 500; letter-spacing: 0.12em; }
-    .ill-tag { display: inline-flex; align-items: center; gap: 8px; color: #2a83ad; }
-    .ill-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--water); }
-    .pend { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; margin: 0 0 20px; border: 1px dashed var(--m400); background: var(--paper); font-size: 14.5px; line-height: 1.5; color: var(--muted); }
-    .pend .mono { color: var(--heat); white-space: nowrap; padding-top: 2px; }
+
+    /* ---------- 08 MATERIALS ---------- */
+    .mat { background: var(--signal); color: #fff; }
+    .mat .tag { border-top-color: rgba(255, 255, 255, 0.4); }
+    .mat .tag .mono, .mat .tag .mono + .mono { color: #fff; }
+    .mat .b2 { color: rgba(255, 255, 255, 0.6); }
+    .mat .lead { color: rgba(255, 255, 255, 0.88); }
+    .cmp { width: 100%; border-collapse: collapse; margin-top: 56px; background: var(--paper); color: var(--ink); }
+    .cmp th, .cmp td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--ll); vertical-align: top; font-size: 15px; line-height: 1.45; }
+    .cmp th { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; color: var(--muted); background: var(--m100); }
+    .cmp td:first-child { font-weight: 600; letter-spacing: -0.02em; width: 22%; }
+    .cmp .yes, .cmp .no { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+    .cmp .yes::before, .cmp .no::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+    .cmp .yes { color: #2a83ad; } .cmp .yes::before { background: var(--water); }
+    .cmp .no { color: var(--muted); } .cmp .no::before { background: var(--m300); }
+    .cmp-wrap { overflow-x: auto; }
+    .mat-sub { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 24px clamp(24px, 5vw, 80px); margin-top: 56px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.35); }
+    .mat-sub .serif { font-size: 20px; line-height: 1.45; max-width: 58ch; }
+    .mat-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 32px; }
+    .mat-cols div { padding: 0 18px; border-left: 1px solid rgba(255, 255, 255, 0.35); }
+    .mat-cols b { display: block; font-weight: 600; font-size: 20px; letter-spacing: -0.03em; margin: 8px 0 4px; }
+    .mat-cols p { font-size: 14.5px; opacity: 0.88; }
+
+    /* ---------- 09 PROJECTS ---------- */
+    .proj { background: var(--paper); }
+    .legend2 { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 48px; padding: 14px 16px; border: 1px solid var(--ll); background: var(--m50); }
+    .legend2 span { display: flex; align-items: center; gap: 10px; }
+    .legend2 i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+    .rtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 28px; }
+    .rtabs button { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid var(--ll); background: transparent; cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .rtabs button i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .rtabs button.on { background: var(--ink); color: var(--m50); border-color: var(--ink); }
+    .reg-t { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .reg-t th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink); }
+    .reg-t td { padding: 18px 12px 18px 0; border-bottom: 1px solid var(--ll); vertical-align: middle; }
+    .reg-t td.no { font-family: var(--mono); font-size: 12.5px; color: var(--signal); width: 140px; }
+    .reg-t td.ti { font-weight: 600; font-size: clamp(18px, 1.7vw, 26px); letter-spacing: -0.035em; }
+    .reg-t td.mut { color: var(--muted); font-size: 15px; }
+    .reg-t td.mut i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px dashed var(--m400); color: var(--muted); white-space: nowrap; text-decoration: none; }
+    .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--heat); }
+    .pill.ill i { background: var(--water); }
+    a.pill:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ---------- 10 CONTACT ---------- */
+    .found-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: 64px; }
+    .direct { border-top: 1px solid var(--ld); }
+    .direct div { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--ld); }
+    .direct .mono { color: var(--m400); }
+    .direct a, .direct .v { text-decoration: none; font-size: 17px; letter-spacing: -0.01em; }
+    .direct a:hover { color: var(--signal); }
+    .dl-b { display: inline-flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; font-size: 17px; letter-spacing: -0.01em; text-align: left; }
+    .dl-b:hover { color: var(--signal); }
+    .dl-b small { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--m400); }
+    .q-label { display: block; color: var(--m400); margin-bottom: 10px; }
+    .needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 28px; }
+    .need { text-align: left; padding: 14px; border: 1px solid var(--ld); background: transparent; color: var(--m300); cursor: pointer; display: flex; flex-direction: column; gap: 6px; min-height: 92px; transition: border-color 0.2s, background 0.2s; }
+    .need i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+    .need b { color: var(--m50); font-weight: 500; font-size: 16px; letter-spacing: -0.02em; line-height: 1.25; }
+    .need:hover { border-color: var(--m300); }
+    .need.on { border-color: var(--m50); background: rgba(244, 241, 236, 0.06); box-shadow: inset 0 0 0 1px var(--m50); }
+    .segs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ld); margin-bottom: 32px; }
+    .seg { height: 48px; background: transparent; border: 0; cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--m300); }
+    .seg + .seg { border-left: 1px solid var(--ld); }
+    .seg:hover { color: var(--m50); }
+    .seg.on { background: var(--m50); color: var(--ink); }
+    .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 22px; }
+    .form .full { grid-column: 1 / -1; }
+    .form label { display: flex; flex-direction: column; gap: 6px; }
+    .form label > span { color: var(--m400); }
+    .form input, .form select, .form textarea { font: inherit; font-size: 18px; letter-spacing: -0.01em; padding: 10px 0 12px; border: 0; border-bottom: 1px solid rgba(236, 231, 222, 0.35); background: transparent; color: var(--m50); border-radius: 0; outline: none; }
+    .form select option { color: var(--ink); }
+    .form input::placeholder, .form textarea::placeholder { color: rgba(236, 231, 222, 0.3); }
+    .form input:focus, .form select:focus, .form textarea:focus { border-bottom-color: var(--signal); }
+    .form textarea { min-height: 100px; resize: vertical; }
+    .form .consent { flex-direction: row; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--m300); line-height: 1.5; }
+    .form .consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--signal); flex: none; }
     .form [aria-invalid="true"] { border-bottom-color: var(--signal); }
+    .consent a { color: var(--m50); text-underline-offset: 3px; }
+    .picked { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 14px; border: 1px solid var(--ld); color: var(--m300); }
+    .picked b { color: var(--m50); font-weight: 500; }
+    .picked button { margin-left: auto; background: none; border: 0; color: var(--signal); cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; }
+    .msg { color: var(--signal); min-height: 18px; }
     .msg a { color: var(--m50); text-decoration: underline; text-underline-offset: 3px; }
     .msg.ok { color: var(--m200); }
-    .consent a { color: var(--m50); text-underline-offset: 3px; }
+
+    /* privacy + gate + footer */
     .priv { background: var(--paper); }
-    .priv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 48px; border-top: 1px solid var(--ink); }
+    .priv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; border-top: 1px solid var(--ink); }
     .priv-grid div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--ll); }
     .priv-grid div:nth-child(3n+2), .priv-grid div:nth-child(3n) { padding-left: 24px; border-left: 1px solid var(--ll); }
     .priv-grid h4 { font-size: 19px; letter-spacing: -0.025em; margin: 6px 0 8px; line-height: 1.2; }
     .priv-grid p { font-size: 15px; color: var(--muted); line-height: 1.55; }
     .priv-grid .mono { color: var(--signal); }
-    .tbc { background: rgba(232, 160, 50, 0.22); padding: 0 4px; color: var(--ink); }
-    .dl-b { display: inline-flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; font-size: 17px; letter-spacing: -0.01em; text-align: left; }
-    .dl-b:hover { color: var(--signal); }
-    .dl-b small { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--m400); }
     .gate { position: fixed; inset: 0; z-index: 60; background: rgba(14, 15, 16, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; }
     .gate-card { position: relative; width: min(460px, 100%); max-height: calc(100vh - 32px); overflow-y: auto; background: var(--paper); color: var(--ink); border: 1px solid var(--ink); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
     .gate-card h3 { font-size: 30px; letter-spacing: -0.04em; }
@@ -322,89 +495,10 @@
     .gform [aria-invalid="true"] { border-bottom-color: var(--signal); }
     .gform .consent { flex-direction: row; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
     .gform .consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--signal); flex: none; }
+    .gform .consent a { color: var(--ink); }
     .gform .gmsg { color: var(--signal); min-height: 18px; }
     .gform .gmsg.ok { color: var(--muted); }
     .gform .gmsg a { color: var(--ink); text-underline-offset: 3px; }
-
-    /* ---------- 06 CAPABILITIES ---------- */
-    .core-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px; margin-top: 96px; align-items: end; }
-    .core-it { display: flex; flex-direction: column; align-items: center; gap: 24px; }
-    .core { position: relative; width: min(112px, 100%); display: flex; flex-direction: column; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); filter: drop-shadow(0 30px 28px rgba(0, 0, 0, 0.5)); }
-    .core-it:hover .core { transform: translateY(-10px); }
-    .core::before { content: ""; position: absolute; left: 0; right: 0; top: -13px; height: 26px; border-radius: 50%; background: var(--top, #ddd); z-index: 2; box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.25); }
-    .cl { position: relative; width: 100%; }
-    .cl::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.42), rgba(255, 255, 255, 0.16) 38%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.5)); }
-    .cl:last-child { border-radius: 0 0 50% 50% / 0 0 13px 13px; overflow: hidden; }
-    .cl.speck { background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1.6px), radial-gradient(rgba(0, 0, 0, 0.35) 1px, transparent 1.6px); background-size: 7px 7px, 11px 11px; }
-    .cl.gran { background-image: radial-gradient(rgba(0, 0, 0, 0.45) 1.4px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 1.2px, transparent 1.8px); background-size: 6px 6px, 9px 8px; }
-    .cl.tile { background-image: linear-gradient(90deg, transparent 46%, rgba(0, 0, 0, 0.25) 46% 50%, transparent 50%); background-size: 40px 100%; }
-    .core-cap { width: 100%; }
-    .core-cap .mono { color: var(--signal); }
-    .core-cap h3 { font-size: 20px; letter-spacing: -0.03em; line-height: 1.15; margin-top: 6px; }
-    .core-it ol { list-style: none; margin: 0; padding: 0; width: 100%; border-top: 1px solid var(--ld); }
-    .core-it li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--ld); font-size: 12.5px; color: var(--m300); line-height: 1.35; }
-    .core-it li i { width: 9px; height: 9px; flex: none; }
-    .field { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 8px; margin-top: 96px; }
-    .field figure { position: relative; margin: 0; overflow: hidden; background: var(--g800); }
-    .field figure:first-child { grid-row: 1 / 3; }
-    .field img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
-    .field figure:hover img { transform: scale(1.04); }
-    .field figcaption { position: absolute; left: 0; bottom: 0; background: var(--g950); color: var(--m200); padding: 6px 10px; font-size: 9.5px; }
-    .field-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 96px; padding-top: 12px; border-top: 1px solid var(--ld); }
-    .field-h + .field { margin-top: 20px; }
-
-    /* ---------- 07 MATERIALS ---------- */
-    .mat-t { font-weight: 500; font-size: clamp(34px, 4.6vw, 76px); line-height: 1.02; letter-spacing: -0.045em; max-width: 19ch; margin-top: 48px; }
-    .mat-t .dim { color: rgba(255, 255, 255, 0.45); }
-    .mat-sub { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 24px clamp(24px, 5vw, 80px); margin-top: 64px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.35); }
-    .mat-sub .serif { font-size: 20px; line-height: 1.45; max-width: 56ch; }
-    .mat-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 36px; }
-    .mat-cols div { padding: 0 18px; border-left: 1px solid rgba(255, 255, 255, 0.35); }
-    .mat-cols b { display: block; font-weight: 600; font-size: 20px; letter-spacing: -0.03em; margin: 8px 0 4px; }
-    .mat-cols p { font-size: 14.5px; opacity: 0.85; }
-
-    /* ---------- 08 PROJECTS ---------- */
-    .proj { background: var(--paper); }
-    .legend2 { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 56px; padding: 14px 16px; border: 1px solid var(--ll); background: var(--m50); }
-    .legend2 span { display: flex; align-items: center; gap: 10px; }
-    .legend2 i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
-    .reg-t { width: 100%; border-collapse: collapse; margin-top: 28px; }
-    .reg-t th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink); }
-    .reg-t td { padding: 20px 12px 20px 0; border-bottom: 1px solid var(--ll); vertical-align: middle; }
-    .reg-t td.no { font-family: var(--mono); font-size: 12.5px; color: var(--signal); width: 140px; }
-    .reg-t td.ti { font-weight: 600; font-size: clamp(19px, 1.8vw, 28px); letter-spacing: -0.035em; }
-    .reg-t td.mut { color: var(--muted); font-size: 15px; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px dashed var(--m400); color: var(--muted); white-space: nowrap; text-decoration: none; }
-    .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--heat); }
-    .pill.ill i { background: var(--water); }
-    a.pill:hover { border-color: var(--ink); color: var(--ink); }
-
-    /* ---------- 09 CONTACT ---------- */
-    .found-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: 64px; }
-    .direct { border-top: 1px solid var(--ld); }
-    .direct div { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--ld); }
-    .direct .mono { color: var(--m400); }
-    .direct a, .direct .v { text-decoration: none; font-size: 17px; letter-spacing: -0.01em; }
-    .direct a:hover { color: var(--signal); }
-    .segs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ld); margin-bottom: 36px; }
-    .seg { height: 52px; background: transparent; border: 0; cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--m300); transition: background 0.2s, color 0.2s; }
-    .seg + .seg { border-left: 1px solid var(--ld); }
-    .seg:hover { color: var(--m50); }
-    .seg.on { background: var(--m50); color: var(--ink); }
-    .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 22px; }
-    .form .full { grid-column: 1 / -1; }
-    .form label { display: flex; flex-direction: column; gap: 6px; }
-    .form label > span { color: var(--m400); }
-    .form input, .form select, .form textarea { font: inherit; font-size: 18px; letter-spacing: -0.01em; padding: 10px 0 12px; border: 0; border-bottom: 1px solid rgba(236, 231, 222, 0.35); background: transparent; color: var(--m50); border-radius: 0; outline: none; transition: border-color 0.2s; }
-    .form select option { color: var(--ink); }
-    .form input::placeholder, .form textarea::placeholder { color: rgba(236, 231, 222, 0.3); }
-    .form input:focus, .form select:focus, .form textarea:focus { border-bottom-color: var(--signal); }
-    .form textarea { min-height: 100px; resize: vertical; }
-    .form .consent { flex-direction: row; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--m300); line-height: 1.5; }
-    .form .consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--signal); flex: none; }
-    .msg { color: var(--signal); min-height: 18px; }
-
-    /* ---------- FOOTER ---------- */
     .foot { background: var(--paper); border-top: 1px solid var(--ink); display: grid; grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); }
     .foot > div { padding: 24px 20px; border-right: 1px solid var(--ll); display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 10px; min-height: 140px; }
     .foot > div:first-child { padding-left: var(--gut); }
@@ -415,19 +509,26 @@
     .foot a { text-decoration: none; } .foot a:hover { color: var(--signal); }
 
     @media (max-width: 1080px) {
-      .aud, .hdr-act .tel { display: none; }
+      .pnav, .hdr-act .tel { display: none; }
       .hdr-act { margin-left: auto; }
       .menu-b { display: inline-flex; align-items: center; }
-      .head, .sys-grid, .jbody, .map-grid, .dx-grid, .found-grid, .mat-sub { grid-template-columns: minmax(0, 1fr); }
-      .hero-foot { grid-template-columns: minmax(0, 1fr); }
-      .key { display: none; }
+      .head, .hero-top, .lib, .map-grid, .pm-grid, .dx-grid, .found-grid, .mat-sub, .jintro, .poem { grid-template-columns: minmax(0, 1fr); }
+      .spec-card { position: static; }
       .tabs { display: flex; }
+      .spaces { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 20px; }
+      .spaces div:nth-child(4) { padding-left: 0; border-left: 0; }
+      .decide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .decide div:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; }
+      .decide div:nth-child(2n) { padding-left: 18px; border-left: 1px solid rgba(236, 231, 222, 0.1); }
       .core-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 80px; }
+      .jmatrix, .assess { grid-template-columns: minmax(0, 1fr); }
+      .needs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .field { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 180px 180px; }
       .field figure:first-child { grid-row: auto; grid-column: 1 / -1; }
       .foot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .foot > div:first-child { grid-column: 1 / -1; }
-      .jphoto { min-height: 300px; }
+      .hero-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero-strip .cta { grid-column: 1 / -1; padding: 14px var(--gut); border-top: 1px solid var(--ld); }
     }
     @media (max-width: 700px) {
       .cg { --hdr: 56px; font-size: 16px; padding-bottom: 56px; }
@@ -438,45 +539,52 @@
       .mbar a { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
       .mbar a + a { background: var(--signal); color: #fff; }
       .proto { top: calc(var(--hdr) + 8px); left: 8px; }
-      .hero { --r: 112px; --mx: 64%; --my: 50%; min-height: 600px; }
-      .hl h1 { font-size: clamp(44px, 12.5vw, 70px); }
-      .hero-foot .serif { font-size: 15.5px; }
-      .choose { grid-template-columns: minmax(0, 1fr); }
-      .choose a { flex-direction: row; justify-content: space-between; align-items: center; padding: 12px 14px; }
-      .choose a b { font-size: 17px; }
-      .jtabs, .chap { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-left: calc(var(--gut) * -1); margin-right: calc(var(--gut) * -1); padding-left: var(--gut); padding-right: var(--gut); border-top: 0; }
+      .tri { flex-direction: column; height: auto; }
+      .tp { flex: none; height: 300px; border-right: 0; border-bottom: 1px solid var(--ld); }
+      .tri:hover .tp, .tri .tp:hover { flex-grow: 0; }
+      .hero-strip { grid-template-columns: minmax(0, 1fr); }
+      .hero-strip a { border-right: 0; border-bottom: 1px solid var(--ld); padding: 12px var(--gut); }
+      .spaces { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .spaces div:nth-child(3), .spaces div:nth-child(5) { padding-left: 0; border-left: 0; }
+      .spaces div:nth-child(4) { padding-left: 16px; border-left: 1px solid var(--ll); }
+      .spec-body { grid-template-columns: minmax(0, 1fr); }
+      .decide { grid-template-columns: minmax(0, 1fr); }
+      .decide div:nth-child(2n) { padding-left: 0; border-left: 0; }
+      .jtabs, .chap { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-left: calc(var(--gut) * -1); margin-right: calc(var(--gut) * -1); padding-left: var(--gut); padding-right: var(--gut); border-top: 0; }
       .jtabs::-webkit-scrollbar, .chap::-webkit-scrollbar { display: none; }
       .jt { flex: 0 0 auto; min-width: 150px; scroll-snap-align: start; border-top: 1px solid var(--ink); padding-right: 24px; }
       .jt .t { font-size: 24px; }
       .chap button { flex: 0 0 auto; min-width: 124px; scroll-snap-align: start; border-top: 1px solid var(--ll); min-height: 64px; }
-      .priv-grid { grid-template-columns: minmax(0, 1fr); }
-      .priv-grid div:nth-child(3n+2), .priv-grid div:nth-child(3n) { padding-left: 0; border-left: 0; }
-      .pend { flex-direction: column; gap: 4px; }
-      .jcols, .form, .mat-cols, .ldet { grid-template-columns: minmax(0, 1fr); }
-      .mat-cols div { padding: 14px 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.35); }
       .chap .t { font-size: 17px; }
-      .dsheet-top { flex-direction: column; align-items: flex-start; gap: 2px; }
       .narr { grid-template-columns: minmax(0, 1fr); padding: 18px 16px 80px; min-height: 600px; }
-      .narr .navb { right: 16px; bottom: 18px; }
+      .navb { right: 16px; bottom: 18px; }
+      .dsheet-top { flex-direction: column; align-items: flex-start; gap: 2px; }
+      .pend { flex-direction: column; gap: 4px; }
       .lbl-svg { display: none; }
       .core-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .field { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-rows: 220px; }
+      .form, .mat-cols { grid-template-columns: minmax(0, 1fr); }
+      .mat-cols div { padding: 14px 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.35); }
+      .needs { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
       .reg-t th:nth-child(3), .reg-t td:nth-child(3) { display: none; }
       .reg-t td.no { width: 92px; font-size: 11px; }
       .hot { width: 28px; height: 28px; font-size: 9.5px; }
       .segs .seg { font-size: 9.5px; letter-spacing: 0.04em; }
+      .priv-grid { grid-template-columns: minmax(0, 1fr); }
+      .priv-grid div:nth-child(3n+2), .priv-grid div:nth-child(3n) { padding-left: 0; border-left: 0; }
       .foot { grid-template-columns: minmax(0, 1fr); }
+      .cut-top { flex-direction: column; align-items: flex-start; }
     }
     @media (prefers-reduced-motion: reduce) {
       .rv { opacity: 1; transform: none; transition: none; }
-      .under-flow path, .flow { animation: none; }
-      .g, .stamp, .ly, .chap button::before, .jt::before { transition: none; }
+      .flow, .rain path { animation: none; }
+      .tp { transition: none; }
+      .dx .g, .cut .g, .chap button::before, .jt::before { transition: none; }
     }
   </style>
   <script>
     (function () {
       var raf = 0, io = null, seen = typeof WeakSet !== 'undefined' ? new WeakSet() : null;
-      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
       function frame() {
         raf = 0;
         var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
@@ -497,30 +605,6 @@
       window.addEventListener('resize', req);
       var tm = 0;
       new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { bind(); req(); }, 60); }).observe(document.documentElement, { childList: true, subtree: true });
-
-      var last = 0, t0 = performance.now();
-      function setLens(hero, x, y) { hero.style.setProperty('--mx', x.toFixed(1) + 'px'); hero.style.setProperty('--my', y.toFixed(1) + 'px'); }
-      function onMove(e) {
-        var hero = document.getElementById('cg-hero'); if (!hero) return;
-        var r = hero.getBoundingClientRect(), p = e.touches ? e.touches[0] : e;
-        var foot = hero.querySelector('.hero-foot'), fh = foot ? foot.offsetHeight : 0;
-        if (p.clientY < r.top || p.clientY > r.bottom - fh) return;
-        last = performance.now(); setLens(hero, p.clientX - r.left, p.clientY - r.top);
-      }
-      document.addEventListener('pointermove', onMove, { passive: true });
-      document.addEventListener('touchmove', onMove, { passive: true });
-      function drift(now) {
-        var hero = document.getElementById('cg-hero');
-        if (hero && !reduce && now - last > 2400) {
-          var r = hero.getBoundingClientRect();
-          if (r.bottom > 0 && r.top < window.innerHeight) {
-            var t = (now - t0) / 1000;
-            setLens(hero, r.width * (0.62 + 0.2 * Math.sin(t * 0.33)), r.height * (0.42 + 0.13 * Math.sin(t * 0.51 + 1.2)));
-          }
-        }
-        requestAnimationFrame(drift);
-      }
-      requestAnimationFrame(drift);
     })();
   </script>
   <script>
@@ -529,60 +613,51 @@
       function mark(el, bad) { if (!el) return; if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); }
       function say(msg, text, link, cls) {
         if (!msg) return;
-        msg.className = 'msg mono' + (cls ? ' ' + cls : '');
+        msg.className = cls || 'msg mono';
         msg.textContent = text;
         if (link) { var a = document.createElement('a'); a.href = link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = ' Open WhatsApp'; msg.appendChild(a); }
       }
-      function normPhone(v) {
+      function normphone(v) {
         var d = (v || '').replace(/\D/g, '');
         if (d.length === 12 && d.indexOf('91') === 0) d = d.slice(2);
         else if (d.length === 11 && d.charAt(0) === '0') d = d.slice(1);
         return /^[6-9]\d{9}$/.test(d) ? d : '';
       }
-      document.addEventListener('input', function (e) { if (e.target && e.target.closest && e.target.closest('#cg-form')) mark(e.target, false); });
+      function emailok(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+      function openwa(to, text) { var url = 'https://wa.me/' + to + '?text=' + encodeURIComponent(text); var w = null; try { w = window.open(url, '_blank'); if (w) w.opener = null; } catch (err) { w = null; } return { url: url, ok: !!w }; }
+      document.addEventListener('input', function (e) { if (e.target && e.target.closest && e.target.closest('#cg-form, #cg-gate-form')) mark(e.target, false); });
       document.addEventListener('submit', function (e) {
-        var f = e.target; if (!f || f.id !== 'cg-form') return;
+        var f = e.target; if (!f || (f.id !== 'cg-form' && f.id !== 'cg-gate-form')) return;
         e.preventDefault();
-        var msg = document.getElementById('cg-msg'), problems = [], first = null;
+        var gate = f.id === 'cg-gate-form';
+        var msg = document.getElementById(gate ? 'cg-gate-msg' : 'cg-msg'), base = gate ? 'gmsg mono' : 'msg mono';
+        var problems = [], first = null;
         var type = (field(f, 'Enquiry type') || {}).value || 'Home';
         var nm = field(f, 'Name'), ph = field(f, 'Phone'), em = field(f, 'Email'), cs = field(f, 'consent');
         var nameok = nm && nm.value.trim().length >= 2; mark(nm, !nameok); if (!nameok) { problems.push('your name'); first = first || nm; }
-        var phone = normPhone(ph && ph.value); mark(ph, !phone); if (!phone) { problems.push('a valid 10-digit Indian mobile number'); first = first || ph; }
+        var phone = normphone(ph && ph.value); mark(ph, !phone); if (!phone) { problems.push('a valid 10-digit mobile number'); first = first || ph; }
         if (em) {
-          var ev = em.value.trim(), need = type !== 'Home';
-          var emok = ev ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev) : !need;
-          mark(em, !emok); if (!emok) { problems.push(need ? 'a valid work email' : 'a valid email, or leave it blank'); first = first || em; }
+          var ev = em.value.trim(), need = gate || type !== 'Home';
+          var good = ev ? emailok(ev) : !need;
+          mark(em, !good); if (!good) { problems.push(need ? 'a valid email' : 'a valid email, or leave it blank'); first = first || em; }
         }
-        if (problems.length) { say(msg, 'Please add ' + problems.join(', ') + '.'); if (first) first.focus(); return; }
-        if (!cs || !cs.checked) { say(msg, 'Please confirm we may contact you about this enquiry.'); if (cs) cs.focus(); return; }
+        if (problems.length) { say(msg, 'Please add ' + problems.join(', ') + '.', null, base); if (first) first.focus(); return; }
+        if (!cs || !cs.checked) { say(msg, 'Please confirm we may contact you.', null, base); if (cs) cs.focus(); return; }
+        var to = f.getAttribute('data-wa') || '919819330556', r;
+        if (gate) {
+          var a = document.createElement('a'); a.href = './Coreguard-Company-Profile.pdf'; a.download = 'Coreguard-Company-Profile.pdf'; document.body.appendChild(a); a.click(); a.remove();
+          r = openwa(to, 'New Coreguard lead\nSource: Company profile download\nName: ' + nm.value.trim() + '\nPhone: +91 ' + phone + '\nEmail: ' + em.value.trim());
+          say(msg, 'Your download has started. Press send in WhatsApp so we know it reached you.', r.ok ? null : r.url, base + ' ok');
+          return;
+        }
         var lines = [];
         Array.prototype.forEach.call(f.elements, function (el) {
           if (!el.name || el.type === 'checkbox' || !el.value || !el.value.trim()) return;
           lines.push(el.name + ': ' + (el.name === 'Phone' ? '+91 ' + phone : el.value.trim()));
         });
-        var to = f.getAttribute('data-wa') || '919819330556';
-        var url = 'https://wa.me/' + to + '?text=' + encodeURIComponent('New Coreguard enquiry\n' + lines.join('\n'));
-        var w = null;
-        try { w = window.open(url, '_blank'); if (w) w.opener = null; } catch (err) { w = null; }
-        if (w) say(msg, 'WhatsApp is opening with your enquiry. Press send there to deliver it.', url, 'ok');
-        else say(msg, 'Your browser blocked WhatsApp from opening.', url);
-      });
-      document.addEventListener('submit', function (e) {
-        var f = e.target; if (!f || f.id !== 'cg-gate-form') return;
-        e.preventDefault();
-        var msg = document.getElementById('cg-gate-msg'), problems = [], first = null;
-        var nm = field(f, 'Name'), ph = field(f, 'Phone'), em = field(f, 'Email'), cs = field(f, 'consent');
-        var nameok = nm && nm.value.trim().length >= 2; mark(nm, !nameok); if (!nameok) { problems.push('your name'); first = first || nm; }
-        var phone = normPhone(ph && ph.value); mark(ph, !phone); if (!phone) { problems.push('a valid 10-digit mobile number'); first = first || ph; }
-        var ev = em ? em.value.trim() : ''; var emok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev); mark(em, !emok); if (!emok) { problems.push('a valid email'); first = first || em; }
-        if (problems.length) { say(msg, 'Please add ' + problems.join(', ') + '.'); msg.className = 'gmsg mono'; if (first) first.focus(); return; }
-        if (!cs || !cs.checked) { say(msg, 'Please confirm we may contact you.'); msg.className = 'gmsg mono'; if (cs) cs.focus(); return; }
-        var a = document.createElement('a'); a.href = './Coreguard-Company-Profile.pdf'; a.download = 'Coreguard-Company-Profile.pdf'; document.body.appendChild(a); a.click(); a.remove();
-        var to = f.getAttribute('data-wa') || '919819330556';
-        var text = 'New Coreguard lead\nSource: Company profile download\nName: ' + nm.value.trim() + '\nPhone: +91 ' + phone + '\nEmail: ' + ev;
-        var url = 'https://wa.me/' + to + '?text=' + encodeURIComponent(text);
-        var w = null; try { w = window.open(url, '_blank'); if (w) w.opener = null; } catch (err) { w = null; }
-        say(msg, 'Your download has started. Press send in WhatsApp so we know it reached you.', w ? null : url); msg.className = 'gmsg mono ok';
+        r = openwa(to, 'New Coreguard enquiry\n' + lines.join('\n'));
+        if (r.ok) say(msg, 'WhatsApp is opening with your enquiry. Press send there to deliver it.', r.url, base + ' ok');
+        else say(msg, 'Your browser blocked WhatsApp from opening.', r.url, base);
       });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var x = document.getElementById('cg-gate-x'); if (x) x.click(); } });
     })();
@@ -591,19 +666,20 @@
 
 <div class="cg" style="--signal: {{accent}};">
 
-  <!-- HEADER — fixed, stable -->
+  <!-- HEADER -->
   <header id="cg-hdr" class="hdr wrap">
-    <a href="#cg-hero" aria-label="Coreguard home" style="line-height: 0;"><img class="logo" src="./assets/coreguard-logo.png" alt="Coreguard" width="119" height="24"></a>
+    <a href="#cg-hero" aria-label="Coreguard home" style="line-height: 0;"><img class="logo" src="./assets/coreguard-logo.png" alt="Coreguard" width="118" height="24"></a>
     <div class="idx">
-      <button class="idx-b mono" onClick="{{toggleIdx}}" aria-expanded="{{idxOpen}}" aria-label="Jump to section"><span class="n" id="cg-idx-n">01</span><span class="lbl" id="cg-idx-l">Beyond the surface</span><span class="car">▼</span></button>
+      <button class="idx-b mono" onClick="{{toggleIdx}}" aria-expanded="{{idxOpen}}" aria-label="Jump to section"><span class="n" id="cg-idx-n">01</span><span class="lbl" id="cg-idx-l">Coreguard</span><span class="car">▼</span></button>
       <sc-if value="{{idxOpen}}" hint-placeholder-val="{{ false }}">
-        <div class="idx-m"><sc-for list="{{secs}}" as="s" hint-placeholder-count="9"><a href="#{{s.id}}" onClick="{{closeAll}}"><span>{{s.n}}</span><span>{{s.name}}</span></a></sc-for></div>
+        <div class="idx-m"><sc-for list="{{secs}}" as="s" hint-placeholder-count="10"><a href="#{{s.id}}" onClick="{{closeAll}}"><span>{{s.n}}</span><span>{{s.name}}</span></a></sc-for></div>
       </sc-if>
     </div>
-    <nav class="aud" aria-label="Who is this for">
-      <a href="#paths" class="{{audCls.homes}}" onClick="{{goHomes}}">Homes</a>
-      <a href="#paths" class="{{audCls.buildings}}" onClick="{{goBuildings}}">Buildings</a>
-      <a href="#paths" class="{{audCls.industry}}" onClick="{{goIndustry}}">Industry</a>
+    <nav class="pnav" aria-label="What we do">
+      <a href="#surfaces"><i style="background: var(--p1);"></i>Designed surfaces</a>
+      <a href="#protection"><i style="background: var(--p2);"></i>Building protection</a>
+      <a href="#permeable"><i style="background: var(--p3);"></i>Permeable surfaces</a>
+      <a href="#record">Projects</a>
     </nav>
     <div class="hdr-act">
       <a class="tel" href="tel:+919819330556">+91 98193 30556</a>
@@ -614,7 +690,7 @@
   </header>
   <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
     <nav class="sheet" aria-label="Site">
-      <sc-for list="{{secs}}" as="s" hint-placeholder-count="9"><a href="#{{s.id}}" onClick="{{closeAll}}"><span class="mono">{{s.n}}</span><span class="t">{{s.name}}</span></a></sc-for>
+      <sc-for list="{{secs}}" as="s" hint-placeholder-count="10"><a href="#{{s.id}}" onClick="{{closeAll}}"><span class="mono">{{s.n}}</span><span class="t">{{s.name}}</span></a></sc-for>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px;"><a class="btn btn-ink" href="tel:+919819330556" style="display: inline-flex; border-bottom: 1px solid var(--ink);">98193 30556</a><a class="btn btn-ink" href="tel:+919833602669" style="display: inline-flex; border-bottom: 1px solid var(--ink);">98336 02669</a></div>
     </nav>
   </sc-if>
@@ -622,195 +698,335 @@
   <sc-if value="{{showBanner}}" hint-placeholder-val="{{ true }}"><div class="proto mono"><b>Prototype</b> · content pending validation</div></sc-if>
 
   <!-- 01 HERO -->
-  <section id="cg-hero" class="hero" data-sec="Beyond the surface" data-n="01">
-    <div class="hero-under" aria-hidden="true">
-      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none">
-        <defs>
-          <pattern id="hx-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="rgba(236,231,222,0.06)" stroke-width="1"></path></pattern>
-          <pattern id="hx-soil" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(236,231,222,0.1)"></line></pattern>
-          <radialGradient id="hx-heat"><stop offset="0" stop-color="#e8a032" stop-opacity="0.75"></stop><stop offset="0.45" stop-color="#d63b25" stop-opacity="0.35"></stop><stop offset="1" stop-color="#d63b25" stop-opacity="0"></stop></radialGradient>
-          <radialGradient id="hx-wet"><stop offset="0" stop-color="#4fb3df" stop-opacity="0.8"></stop><stop offset="0.5" stop-color="#2f7fb0" stop-opacity="0.35"></stop><stop offset="1" stop-color="#2f7fb0" stop-opacity="0"></stop></radialGradient>
-        </defs>
-        <rect width="1200" height="800" fill="#0e0f10"></rect>
-        <rect width="1200" height="800" fill="url(#hx-grid)"></rect>
-        <g transform="translate(360 100)">
-          <rect x="-400" y="420" width="1300" height="300" fill="url(#hx-soil)"></rect>
-          <ellipse cx="330" cy="112" rx="170" ry="60" fill="url(#hx-heat)"></ellipse>
-          <ellipse cx="536" cy="250" rx="90" ry="80" fill="url(#hx-wet)"></ellipse>
-          <ellipse cx="200" cy="490" rx="110" ry="90" fill="url(#hx-wet)"></ellipse>
-          <ellipse cx="600" cy="520" rx="90" ry="80" fill="url(#hx-wet)"></ellipse>
-          <ellipse cx="120" cy="330" rx="90" ry="40" fill="url(#hx-heat)"></ellipse>
-          <g stroke="rgba(236,231,222,0.82)" stroke-width="1.5">
-            <line x1="-400" y1="420" x2="900" y2="420" stroke-opacity="0.6"></line>
-            <rect x="200" y="110" width="400" height="10"></rect><rect x="200" y="86" width="8" height="24"></rect><rect x="592" y="86" width="8" height="24"></rect>
-            <rect x="200" y="210" width="400" height="10"></rect><rect x="200" y="310" width="400" height="10"></rect><rect x="200" y="410" width="400" height="10"></rect>
-            <line x1="204" y1="120" x2="204" y2="410"></line><line x1="596" y1="120" x2="596" y2="410"></line>
-            <rect x="200" y="420" width="12" height="120"></rect><rect x="588" y="420" width="12" height="120"></rect><rect x="196" y="540" width="408" height="16"></rect>
-            <g stroke-dasharray="3 5" stroke-opacity="0.4"><line x1="333" y1="120" x2="333" y2="540"></line><line x1="466" y1="120" x2="466" y2="540"></line></g>
-            <path d="M480 210 V224 H590 V210"></path>
-            <rect x="30" y="320" width="170" height="12"></rect><line x1="60" y1="332" x2="60" y2="420"></line><line x1="140" y1="332" x2="140" y2="420"></line><path d="M44 320 V294 H112 V320"></path>
-            <rect x="600" y="412" width="190" height="8"></rect>
-          </g>
-          <g class="under-flow" stroke="#4fb3df" stroke-width="2" stroke-dasharray="5 3">
-            <path d="M250 106 q12 -5 24 0 t24 0 t24 0 t24 0 t24 0"></path><path d="M380 120 v46 M420 120 v32"></path><path d="M530 224 v56"></path>
-            <path d="M120 470 H196 M140 505 H196 M680 480 H604"></path><path d="M290 610 V558 M400 610 V558 M510 610 V558"></path><path d="M200 326 v40"></path>
-          </g>
-          <g stroke="#d63b25" stroke-width="4"><path d="M198 84 V107 H602 V84"></path><path d="M194 420 V559 H606 V420"></path><path d="M480 207 V227 H590 V207"></path><path d="M30 317 H200"></path><path d="M30 409 H200 M600 409 H790"></path></g>
-          <g font-family="Geist Mono, monospace" font-size="11" fill="#ece7de" letter-spacing="0.8">
-            <text x="612" y="72">TERRACE</text><text x="612" y="88" fill="#e8a032">UV · PONDING · MOVEMENT</text>
-            <text x="612" y="236">WET AREA</text><text x="612" y="252" fill="#4fb3df">SEEPAGE TO FLOOR BELOW</text>
-            <text x="612" y="512">BASEMENT</text><text x="612" y="528" fill="#4fb3df">WATER UNDER PRESSURE</text>
-            <text x="-10" y="280">PODIUM · JOINTS</text>
-          </g>
-        </g>
-      </svg>
-      <div class="hl hl-u"><span class="eb mono">Coreguard · Building protection &amp; surface systems</span><h1>Beyond the surface.<span class="l2">Engineered to protect.</span></h1></div>
-    </div>
-    <div class="hero-surface">
-      <div class="hl hl-s"><span class="eb mono">Coreguard · Building protection &amp; surface systems</span><h1>Beyond the surface<span class="red">.</span><span class="l2">Engineered to protect.</span></h1></div>
-    </div>
-    <div class="lens" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="key mono" aria-hidden="true"><span><i style="background: var(--heat);"></i>Exposure</span><span><i style="background: var(--water);"></i>Water path</span><span><i style="background: var(--signal);"></i>Coreguard system</span></div>
-    <div class="hero-foot wrap">
-      <p class="serif">Waterproofing, epoxy and PU flooring, decorative and permeable surfaces, engineered from the cause up. Move across the wall to see what we see.</p>
-      <div class="choose" role="group" aria-label="Choose your starting point">
-        <a href="#paths" onClick="{{goHomes}}"><span class="mono">I'm protecting</span><b>A home <span>→</span></b></a>
-        <a href="#paths" onClick="{{goBuildings}}"><span class="mono">I manage</span><b>A building <span>→</span></b></a>
-        <a href="#paths" onClick="{{goIndustry}}"><span class="mono">I specify for</span><b>Industry <span>→</span></b></a>
+  <section id="cg-hero" class="hero" data-sec="Coreguard" data-n="01">
+    <div class="hero-top wrap">
+      <div>
+        <span class="eb mono">Coreguard · Surfaces · Protection · Performance</span>
+        <h1>Surfaces that define spaces<span class="red">.</span><span class="l2">Engineered beneath.</span></h1>
       </div>
+      <p class="serif">From designed floors to building protection and permeable surfaces, we create systems that respond to how a space is used, how a building performs and how water moves.</p>
+    </div>
+    <div class="tri" role="list">
+      <a class="tp tp-1" href="#surfaces" role="listitem">
+        <div class="tp-art" aria-hidden="true"></div>
+        <div class="tp-txt"><span class="mono"><i style="background: var(--p1);"></i>01 · Designed surfaces</span><h3>Floors with character.</h3><p>Decorative resin, terrazzo-style and aggregate finishes, flake and quartz, and specialist floors for every kind of space.</p><span class="go mono">Explore finishes <span>→</span></span></div>
+      </a>
+      <a class="tp tp-2" href="#protection" role="listitem">
+        <div class="tp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" fill="none">
+            <defs><pattern id="tp2g" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" stroke="rgba(236,231,222,0.06)"></path></pattern><radialGradient id="tp2w"><stop offset="0" stop-color="#4fb3df" stop-opacity="0.55"></stop><stop offset="1" stop-color="#4fb3df" stop-opacity="0"></stop></radialGradient></defs>
+            <rect width="400" height="600" fill="url(#tp2g)"></rect>
+            <ellipse cx="200" cy="150" rx="140" ry="60" fill="url(#tp2w)"></ellipse>
+            <g stroke="rgba(236,231,222,0.75)" stroke-width="1.4">
+              <rect x="50" y="110" width="300" height="10"></rect><rect x="50" y="86" width="8" height="24"></rect><rect x="342" y="86" width="8" height="24"></rect>
+              <rect x="50" y="210" width="300" height="10"></rect><line x1="54" y1="120" x2="54" y2="210"></line><line x1="346" y1="120" x2="346" y2="210"></line>
+              <path d="M230 210 V224 H330 V210"></path>
+            </g>
+            <g stroke="#4fb3df" stroke-width="2" stroke-dasharray="5 4" class="flow"><path d="M150 120 v50"></path><path d="M270 224 v50"></path></g>
+            <g stroke="#d63b25" stroke-width="4"><path d="M48 84 V107 H352 V84"></path><path d="M230 207 V227 H330 V207"></path></g>
+          </svg>
+        </div>
+        <div class="tp-txt"><span class="mono"><i style="background: var(--p2);"></i>02 · Building protection</span><h3>Water kept out.</h3><p>Terraces, wet areas, basements, podiums and joints, diagnosed first and protected with the right system.</p><span class="go mono">Explore the structure <span>→</span></span></div>
+      </a>
+      <a class="tp tp-3" href="#permeable" role="listitem">
+        <div class="tp-art" aria-hidden="true">
+          <svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMin slice" fill="none">
+            <defs>
+              <pattern id="tp3s" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="3" fill="#3a4448"></circle><circle cx="11" cy="10" r="2.4" fill="#2c3538"></circle></pattern>
+              <pattern id="tp3a" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#c9b89c"></circle><circle cx="5.5" cy="5" r="1.3" fill="#8f7e66"></circle></pattern>
+              <pattern id="tp3e" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(160,130,100,0.25)"></line></pattern>
+            </defs>
+            <g class="rain" stroke="#7fc4e2" stroke-width="1.4" stroke-dasharray="10 30" opacity="0.8"><path d="M60 0 V150"></path><path d="M120 -20 V150"></path><path d="M180 10 V150"></path><path d="M240 -10 V150"></path><path d="M300 0 V150"></path><path d="M350 -30 V150"></path></g>
+            <rect x="0" y="150" width="400" height="22" fill="url(#tp3a)"></rect>
+            <rect x="0" y="172" width="400" height="10" fill="#5a5048"></rect>
+            <rect x="0" y="182" width="400" height="150" fill="url(#tp3s)"></rect>
+            <rect x="0" y="262" width="400" height="70" fill="#4fb3df" fill-opacity="0.22"></rect>
+            <line x1="0" y1="332" x2="400" y2="332" stroke="#8a8277" stroke-dasharray="4 4"></line>
+            <rect x="0" y="333" width="400" height="267" fill="url(#tp3e)"></rect>
+            <g stroke="#4fb3df" stroke-width="2" stroke-dasharray="5 4" class="flow"><path d="M80 340 v80"></path><path d="M200 340 v100"></path><path d="M320 340 v80"></path></g>
+          </svg>
+        </div>
+        <div class="tp-txt"><span class="mono"><i style="background: var(--p3);"></i>03 · Permeable surfaces</span><h3>Rain, returned to the ground.</h3><p>Surfaces that let water pass through, be held in the sub-base and, where the ground allows, soak back in.</p><span class="go mono">See how it works <span>→</span></span></div>
+      </a>
+    </div>
+    <div class="hero-strip">
+      <a href="#paths" onClick="{{goHomes}}"><span class="mono">I'm improving</span><b>A home</b></a>
+      <a href="#paths" onClick="{{goBuildings}}"><span class="mono">I manage</span><b>A commercial space</b></a>
+      <a href="#paths" onClick="{{goIndustry}}"><span class="mono">I build or specify</span><b>Industry &amp; projects</b></a>
+      <div class="cta"><a class="btn btn-red" href="#contact">Discuss your project <span class="ar">→</span></a></div>
     </div>
   </section>
 
-  <!-- 02 THE SYSTEM -->
-  <section id="system" class="sec dark wrap" data-sec="The system" data-n="02">
+  <!-- 02 DESIGNED SURFACES -->
+  <section id="surfaces" class="sec ds wrap" data-sec="Designed surfaces" data-n="02">
     <div class="head">
-      <div class="tag rv"><span class="mono">02</span><span class="mono">The proposition</span></div>
-      <div class="rv"><h2>Protection is not a product<span class="red">.</span><span class="b2">It's a system.</span></h2><p class="lead">Every layer is chosen for the substrate beneath it and the exposure above it. Select a layer to see its job, and what fails without it.</p></div>
+      <div class="tag rv"><span class="mono pil"><i style="background: var(--p1);"></i>Pillar 01</span><span class="mono">Designed surfaces</span></div>
+      <div class="rv"><h2>A floor is not just something you walk on<span class="red">.</span><span class="b2">It sets the character of the space.</span></h2><p class="lead">Colour, aggregate, texture and finish decide how a room feels. The substrate, the system and the application decide how long it stays that way. We design for both.</p></div>
     </div>
-    <div class="sys-grid">
-      <div class="stage rv" aria-hidden="true">
-        <div class="stack">
-          <sc-for list="{{layers}}" as="l" hint-placeholder-count="5"><div class="ly ly-{{l.i}} {{l.cls}}" style="--i: {{l.i}};" onClick="{{l.pick}}"></div></sc-for>
+    <div class="lib">
+      <div class="fin-list rv" role="tablist" aria-label="Finishes">
+        <sc-for list="{{finishes}}" as="f" hint-placeholder-count="8">
+          <button class="fin {{f.cls}}" onClick="{{f.pick}}" role="tab" aria-selected="{{f.sel}}"><span class="sw {{f.tx}}"></span><span><span class="t">{{f.name}}</span><span class="k mono">{{f.kind}}</span></span><span class="arr">→</span></button>
+        </sc-for>
+      </div>
+      <div class="spec-card rv">
+        <div class="sample">
+          <div class="tex {{fin.tx}}"></div>
+          <sc-if value="{{fin.hasPhoto}}" hint-placeholder-val="{{ true }}"><div class="photo" style="background-image: url({{fin.photo}});"></div></sc-if>
+          <span class="cap mono">{{fin.cap}}</span>
+          <sc-if value="{{fin.hasPhoto}}" hint-placeholder-val="{{ true }}"><span class="disc {{fin.tx}}" aria-hidden="true"></span></sc-if>
+        </div>
+        <div class="spec-body">
+          <h3>{{fin.name}}</h3>
+          <p class="serif">{{fin.story}}</p>
+          <dl style="margin: 0;"><dt class="mono">Where it works</dt><dd><div class="chips"><sc-for list="{{fin.where}}" as="w" hint-placeholder-count="4"><span>{{w}}</span></sc-for></div></dd></dl>
+          <dl style="margin: 0;"><dt class="mono">What decides the spec</dt><dd>{{fin.spec}}</dd></dl>
         </div>
       </div>
-      <div class="rv">
-        <div class="layers" role="tablist" aria-label="System layers">
-          <sc-for list="{{layersTop}}" as="l" hint-placeholder-count="5">
-            <button class="lb {{l.on}}" onClick="{{l.pick}}" role="tab" aria-selected="{{l.sel}}"><span class="mono">{{l.n}}</span><span class="t">{{l.name}}</span><i style="background: {{l.sw}};"></i></button>
-          </sc-for>
-        </div>
-        <div class="ldet">
-          <p class="serif">{{layer.job}}</p>
-          <dl style="margin: 0;"><dt class="mono">Without it</dt><dd>{{layer.fail}}</dd></dl>
-          <dl style="margin: 0;"><dt class="mono">Typically</dt><dd>{{layer.what}}</dd></dl>
-        </div>
-        <p class="sys-note mono">Illustrative terrace build-up · every system is specified per site</p>
-      </div>
+    </div>
+    <div class="spaces rv">
+      <div><span class="mono">01</span><b>Residential</b><p>Living areas, kitchens, balconies and villas.</p></div>
+      <div><span class="mono">02</span><b>Hospitality</b><p>Lobbies, restaurants, pool decks and spas.</p></div>
+      <div><span class="mono">03</span><b>Retail</b><p>Showrooms and stores where the floor carries the brand.</p></div>
+      <div><span class="mono">04</span><b>Commercial</b><p>Receptions, offices and circulation spaces.</p></div>
+      <div><span class="mono">05</span><b>Institutional</b><p>Schools, clinics and public buildings that see heavy use.</p></div>
+      <div><span class="mono">06</span><b>Industrial</b><p>Production and storage floors where looks and performance both count.</p></div>
+    </div>
+    <div class="field-h rv"><span class="mono" style="color: var(--p1);">Finished surfaces</span><span class="mono" style="color: var(--muted);">Photos · Coreguard company profile</span></div>
+    <div class="field rv">
+      <figure><img src="./assets/floor-hero.png" alt="Terrazzo-style aggregate floor in a residential interior" loading="lazy"><figcaption class="mono">Aggregate finish · residential</figcaption></figure>
+      <figure><img src="./assets/floor-interior.png" alt="Seamless interior epoxy floor" loading="lazy"><figcaption class="mono">Decorative epoxy</figcaption></figure>
+      <figure><img src="./assets/floor-decorative.png" alt="Close-up of a liquid-ground aggregate floor" loading="lazy"><figcaption class="mono">Liquid grinding</figcaption></figure>
+      <figure><img src="./assets/pool-deck.png" alt="Exterior deck surface beside a pool" loading="lazy"><figcaption class="mono">Exterior deck</figcaption></figure>
+      <figure><img src="./assets/floor-parking.png" alt="Coated parking deck with lane markings" loading="lazy"><figcaption class="mono">Parking deck</figcaption></figure>
     </div>
   </section>
 
-  <!-- 03 JOURNEYS -->
-  <section id="paths" class="sec wrap" data-sec="Your starting point" data-n="03">
+  <!-- 03 BUILDING PROTECTION -->
+  <section id="protection" class="sec dark wrap" data-sec="Building protection" data-n="03">
     <div class="head">
-      <div class="tag rv"><span class="mono">03</span><span class="mono">Where are you starting from?</span></div>
-      <div class="rv"><h2>One standard<span class="red">.</span><span class="b2">Three different conversations.</span></h2></div>
-    </div>
-    <div class="jtabs" role="tablist" aria-label="Audience">
-      <sc-for list="{{auds}}" as="a" hint-placeholder-count="3">
-        <button class="jt {{a.cls}}" onClick="{{a.pick}}" role="tab" aria-selected="{{a.sel}}"><span class="mono">{{a.n}} · {{a.who}}</span><span class="t">{{a.name}}</span></button>
-      </sc-for>
-    </div>
-    <div class="jbody">
-      <figure class="jphoto"><img src="{{aud.img}}" alt="{{aud.alt}}" loading="lazy"><figcaption class="mono">Photo · Coreguard company profile</figcaption></figure>
-      <div class="jtxt">
-        <h3>{{aud.title}}<span class="red">.</span></h3>
-        <span class="who mono">For {{aud.whoLong}}</span>
-        <p class="serif">{{aud.story}}</p>
-        <div class="jcols">
-          <div><span class="mono">What we usually see</span><ul><sc-for list="{{aud.problems}}" as="p" hint-placeholder-count="4"><li>{{p}}</li></sc-for></ul></div>
-          <div><span class="mono">What you can expect</span><ul><sc-for list="{{aud.gets}}" as="p" hint-placeholder-count="3"><li>{{p}}</li></sc-for></ul></div>
-        </div>
-        <div class="jcta"><a class="btn btn-ink" href="#contact" onClick="{{aud.pickSeg}}">{{aud.cta}} <span class="ar">→</span></a><a class="btn" href="#approach">See how we diagnose</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 SYSTEM MAP -->
-  <section id="map" class="sec dark wrap" data-sec="System map" data-n="04">
-    <div class="head">
-      <div class="tag rv"><span class="mono">04</span><span class="mono">The Coreguard System Map</span></div>
-      <div class="rv"><h2>Explore the structure<span class="red">.</span><span class="b2">Seven areas, seven conditions.</span></h2><p class="lead">Every part of a building fails differently. Select an area to see what typically goes wrong, the systems we consider and what has to be right on site.</p></div>
+      <div class="tag rv"><span class="mono pil"><i style="background: var(--p2);"></i>Pillar 02</span><span class="mono">Building protection</span></div>
+      <div class="rv"><h2>We understand what happens beneath a surface<span class="red">.</span><span class="b2">And behind it.</span></h2><p class="lead">Water finds joints, cracks, penetrations and pressure points. Protection starts with finding how it gets in, then choosing and detailing the system that stops it.</p></div>
     </div>
     <div class="map-grid">
-      <div class="map-art rv">
-        <svg viewBox="0 0 800 600" fill="none" aria-hidden="true">
-          <defs><pattern id="mx-soil" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(236,231,222,0.08)"></line></pattern></defs>
-          <rect x="0" y="420" width="800" height="180" fill="url(#mx-soil)"></rect>
-          <rect class="reg {{hl.terrace}}" x="200" y="70" width="400" height="52"></rect>
-          <rect class="reg {{hl.bathroom}}" x="480" y="120" width="110" height="108"></rect>
-          <rect class="reg {{hl.basement}}" x="196" y="420" width="408" height="140"></rect>
-          <rect class="reg {{hl.podium}}" x="30" y="280" width="170" height="54"></rect>
-          <rect class="reg {{hl.parking}}" x="30" y="334" width="170" height="86"></rect>
-          <rect class="reg {{hl.industrial}}" x="212" y="320" width="376" height="100"></rect>
-          <rect class="reg {{hl.external}}" x="600" y="300" width="190" height="120"></rect>
-          <g stroke="rgba(236,231,222,0.8)" stroke-width="1.5">
-            <line x1="0" y1="420" x2="800" y2="420" stroke-opacity="0.5"></line>
-            <rect x="200" y="110" width="400" height="10"></rect><rect x="200" y="86" width="8" height="24"></rect><rect x="592" y="86" width="8" height="24"></rect>
-            <rect x="200" y="210" width="400" height="10"></rect><rect x="200" y="310" width="400" height="10"></rect><rect x="200" y="410" width="400" height="10"></rect>
-            <line x1="204" y1="120" x2="204" y2="410"></line><line x1="596" y1="120" x2="596" y2="410"></line>
-            <rect x="200" y="420" width="12" height="120"></rect><rect x="588" y="420" width="12" height="120"></rect><rect x="196" y="540" width="408" height="16"></rect>
-            <g stroke-dasharray="3 5" stroke-opacity="0.35"><line x1="333" y1="120" x2="333" y2="540"></line><line x1="466" y1="120" x2="466" y2="540"></line></g>
-            <path d="M480 210 V224 H590 V210"></path><line x1="480" y1="150" x2="480" y2="210" stroke-dasharray="2 4"></line>
-            <rect x="30" y="320" width="170" height="12"></rect><line x1="60" y1="332" x2="60" y2="420"></line><line x1="140" y1="332" x2="140" y2="420"></line>
-            <path d="M44 320 V294 H112 V320"></path><path d="M58 294 l6 -16 l6 16 M82 294 l7 -22 l7 22" stroke-opacity="0.5"></path>
-            <path d="M78 412 h40 M84 412 v-14 h28 v14" stroke-opacity="0.5"></path>
-            <rect x="600" y="412" width="190" height="8"></rect>
-            <path d="M720 412 V360 M720 372 c-22 -6 -26 -36 0 -52 c26 16 22 46 0 52" stroke-opacity="0.5"></path>
-          </g>
-          <path class="rl {{hl.terrace}}" d="M198 84 V107 H602 V84"></path>
-          <path class="rl {{hl.bathroom}}" d="M480 207 V227 H590 V207"></path>
-          <path class="rl {{hl.basement}}" d="M194 420 V559 H606 V420"></path>
-          <path class="rl {{hl.podium}}" d="M30 317 H200 M42 292 H114"></path>
-          <path class="rl {{hl.parking}}" d="M30 409 H200"></path>
-          <path class="rl {{hl.industrial}}" d="M212 409 H588"></path>
-          <path class="rl {{hl.external}}" d="M600 409 H790"></path>
-        </svg>
-        <sc-for list="{{areas}}" as="a" hint-placeholder-count="7">
-          <button class="hot {{a.cls}}" onClick="{{a.pick}}" style="left: {{a.x}}%; top: {{a.y}}%;" aria-label="{{a.name}}" aria-pressed="{{a.sel}}">{{a.n}}</button>
-        </sc-for>
-        <span class="map-hint mono">Select an area</span>
-        <div class="tb mono" aria-hidden="true"><span>DRG</span><span>CG-SM-01</span><span>SCALE</span><span>NTS</span></div>
+      <div class="rv">
+        <div class="map-art">
+          <svg viewBox="0 0 800 600" fill="none" aria-hidden="true">
+            <defs><pattern id="mx-soil" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(236,231,222,0.08)"></line></pattern></defs>
+            <rect x="0" y="420" width="800" height="180" fill="url(#mx-soil)"></rect>
+            <rect class="reg {{hl.terrace}}" x="200" y="70" width="400" height="52"></rect>
+            <rect class="reg {{hl.bathroom}}" x="480" y="120" width="110" height="108"></rect>
+            <rect class="reg {{hl.basement}}" x="196" y="420" width="408" height="140"></rect>
+            <rect class="reg {{hl.podium}}" x="30" y="280" width="170" height="54"></rect>
+            <rect class="reg {{hl.parking}}" x="30" y="334" width="170" height="86"></rect>
+            <rect class="reg {{hl.walls}}" x="596" y="120" width="40" height="290"></rect>
+            <rect class="reg {{hl.interior}}" x="212" y="220" width="376" height="90"></rect>
+            <rect class="reg {{hl.industrial}}" x="212" y="320" width="376" height="100"></rect>
+            <rect class="reg {{hl.external}}" x="636" y="300" width="164" height="120"></rect>
+            <g stroke="rgba(236,231,222,0.8)" stroke-width="1.5">
+              <line x1="0" y1="420" x2="800" y2="420" stroke-opacity="0.5"></line>
+              <rect x="200" y="110" width="400" height="10"></rect><rect x="200" y="86" width="8" height="24"></rect><rect x="592" y="86" width="8" height="24"></rect>
+              <rect x="200" y="210" width="400" height="10"></rect><rect x="200" y="310" width="400" height="10"></rect><rect x="200" y="410" width="400" height="10"></rect>
+              <line x1="204" y1="120" x2="204" y2="410"></line><line x1="596" y1="120" x2="596" y2="410"></line>
+              <rect x="200" y="420" width="12" height="120"></rect><rect x="588" y="420" width="12" height="120"></rect><rect x="196" y="540" width="408" height="16"></rect>
+              <g stroke-dasharray="3 5" stroke-opacity="0.35"><line x1="333" y1="120" x2="333" y2="540"></line><line x1="466" y1="120" x2="466" y2="540"></line></g>
+              <path d="M480 210 V224 H590 V210"></path>
+              <rect x="30" y="320" width="170" height="12"></rect><line x1="60" y1="332" x2="60" y2="420"></line><line x1="140" y1="332" x2="140" y2="420"></line>
+              <path d="M44 320 V294 H112 V320"></path><path d="M58 294 l6 -16 l6 16 M82 294 l7 -22 l7 22" stroke-opacity="0.5"></path>
+              <path d="M78 412 h40 M84 412 v-14 h28 v14" stroke-opacity="0.5"></path>
+              <rect x="636" y="412" width="164" height="8"></rect>
+              <path d="M730 412 V360 M730 372 c-22 -6 -26 -36 0 -52 c26 16 22 46 0 52" stroke-opacity="0.5"></path>
+            </g>
+            <path class="rl {{hl.terrace}}" d="M198 84 V107 H602 V84"></path>
+            <path class="rl {{hl.bathroom}}" d="M480 207 V227 H590 V207"></path>
+            <path class="rl {{hl.basement}}" d="M194 420 V559 H606 V420"></path>
+            <path class="rl {{hl.podium}}" d="M30 317 H200 M42 292 H114"></path>
+            <path class="rl {{hl.parking}}" d="M30 409 H200"></path>
+            <path class="rl {{hl.walls}}" d="M599 120 V410"></path>
+            <path class="rl {{hl.interior}}" d="M212 308 H588" style="stroke: var(--p1);"></path>
+            <path class="rl {{hl.industrial}}" d="M212 408 H588" style="stroke: var(--p1);"></path>
+            <path class="rl {{hl.external}}" d="M636 409 H800" style="stroke: var(--p3);"></path>
+          </svg>
+          <sc-for list="{{areas}}" as="a" hint-placeholder-count="9">
+            <button class="hot {{a.cls}} {{a.pcls}}" onClick="{{a.pick}}" style="left: {{a.x}}%; top: {{a.y}}%;" aria-label="{{a.name}}" aria-pressed="{{a.sel}}">{{a.n}}</button>
+          </sc-for>
+          <span class="map-hint mono">Select an area</span>
+          <div class="tb mono" aria-hidden="true"><span>DRG</span><span>CG-SM-02</span><span>SCALE</span><span>NTS</span></div>
+        </div>
+        <div class="map-key mono"><span><i style="background: var(--p2);"></i>Protection</span><span><i style="background: var(--p1);"></i>Designed surface</span><span><i style="background: var(--p3);"></i>Permeable surface</span></div>
       </div>
       <div class="panel rv">
-        <div class="tabs"><sc-for list="{{areas}}" as="a" hint-placeholder-count="7"><button class="tab {{a.cls}}" onClick="{{a.pick}}">{{a.n}} {{a.name}}</button></sc-for></div>
-        <div class="meta mono"><span>Area {{sel.n}} / 07</span><span>{{sel.zone}}</span></div>
+        <div class="tabs"><sc-for list="{{areas}}" as="a" hint-placeholder-count="9"><button class="tab {{a.cls}}" onClick="{{a.pick}}">{{a.n}} {{a.name}}</button></sc-for></div>
+        <div class="meta mono"><span>Area {{sel.n}} / 09</span><b style="color: {{sel.pcol}};">{{sel.pname}}</b></div>
         <h3>{{sel.name}}</h3>
         <p class="serif">{{sel.intro}}</p>
+        <div class="notice"><span class="mono">What you might be noticing</span><p>{{sel.notice}}</p></div>
         <dl>
-          <div><dt class="mono">Typical challenges</dt><dd><ul><sc-for list="{{sel.challenges}}" as="c" hint-placeholder-count="4"><li>{{c}}</li></sc-for></ul></dd></div>
-          <div><dt class="mono">Systems we consider</dt><dd><ul><sc-for list="{{sel.systems}}" as="c" hint-placeholder-count="3"><li>{{c}}</li></sc-for></ul></dd></div>
+          <div><dt class="mono">What usually causes it</dt><dd><ul><sc-for list="{{sel.challenges}}" as="c" hint-placeholder-count="4"><li>{{c}}</li></sc-for></ul></dd></div>
+          <div><dt class="mono">What we would consider</dt><dd><ul><sc-for list="{{sel.systems}}" as="c" hint-placeholder-count="3"><li>{{c}}</li></sc-for></ul></dd></div>
           <div><dt class="mono">What has to be right on site</dt><dd><ul><sc-for list="{{sel.site}}" as="c" hint-placeholder-count="3"><li>{{c}}</li></sc-for></ul></dd></div>
         </dl>
-        <a class="btn btn-red" href="#contact">Discuss a {{sel.short}} issue <span class="ar">→</span></a>
+        <div class="panel-cta"><a class="btn btn-red" href="#contact" onClick="{{sel.ask}}">Discuss this area <span class="ar">→</span></a><sc-if value="{{sel.hasCore}}" hint-placeholder-val="{{ true }}"><a class="btn btn-line" href="#systems" onClick="{{sel.showCore}}">See the build-up</a></sc-if></div>
+        <p class="panel-rec mono"><i></i>Coreguard project record for this area · in preparation</p>
       </div>
     </div>
   </section>
 
-  <!-- 05 THE DIAGNOSTIC -->
-  <section id="approach" class="sec dx wrap" data-ch="{{ch}}" data-sec="The Diagnostic" data-n="05">
+  <!-- 04 PERMEABLE -->
+  <section id="permeable" class="sec pm wrap" data-sec="Permeable surfaces" data-n="04">
     <div class="head">
-      <div class="tag rv"><span class="mono">05</span><span class="mono">The Coreguard Diagnostic</span></div>
-      <div class="rv"><h2>Understand before we apply<span class="red">.</span><span class="b2">Follow one leak from stain to sign-off.</span></h2><p class="lead">Anyone can list four process steps. This example follows a single terrace leak: what is seen, what is found, what is specified, how the work is controlled and how the result is checked.</p></div>
+      <div class="tag rv"><span class="mono pil"><i style="background: var(--p3);"></i>Pillar 03</span><span class="mono">Permeable surfaces &amp; water-sensitive design</span></div>
+      <div class="rv"><h2>Let the ground breathe<span class="red">.</span><span class="b2">Surfaces that work with water, not against it.</span></h2><p class="lead">Most external surfaces send every drop of rain across the top and into a drain. A properly designed permeable surface lets water pass through, holds it in a purpose-built aggregate sub-base and, where the ground allows, lets it soak back in.</p></div>
     </div>
-    <div class="chap" role="tablist" aria-label="Diagnostic stages">
-      <sc-for list="{{chapters}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" onClick="{{c.go}}" role="tab" aria-selected="{{c.isCur}}"><span class="mono">{{c.n}}</span><span class="t">{{c.k}}</span></button></sc-for>
+    <div class="pm-grid">
+      <div class="cut rv" data-mode="{{pmMode}}" data-ty="{{pmType}}">
+        <div class="cut-top">
+          <div class="seg2" role="tablist" aria-label="Surface type"><button class="{{pmCls.conv}}" onClick="{{setConv}}" role="tab" aria-selected="{{pmSel.conv}}">Conventional</button><button class="{{pmCls.perm}}" onClick="{{setPerm}}" role="tab" aria-selected="{{pmSel.perm}}">Permeable</button></div>
+          <sc-if value="{{isPerm}}" hint-placeholder-val="{{ true }}">
+            <div class="seg2" role="tablist" aria-label="Where the water goes"><button class="{{tyCls.A}}" onClick="{{setA}}">Full infiltration</button><button class="{{tyCls.B}}" onClick="{{setB}}">Partial</button><button class="{{tyCls.C}}" onClick="{{setC}}">No infiltration</button></div>
+          </sc-if>
+        </div>
+        <svg viewBox="0 0 800 440" fill="none" role="img" aria-label="{{pmAlt}}">
+          <defs>
+            <pattern id="pm-agg" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#a6927a"></rect><circle cx="2.5" cy="2.5" r="2" fill="#cdbb9e"></circle><circle cx="7" cy="6.5" r="1.7" fill="#7b6a56"></circle></pattern>
+            <pattern id="pm-bed" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#5e544a"></rect><circle cx="2" cy="2" r="1" fill="#8a7d6c"></circle></pattern>
+            <pattern id="pm-sub" width="26" height="22" patternUnits="userSpaceOnUse"><rect width="26" height="22" fill="#1c2326"></rect><path d="M2 8 l6 -5 l8 2 l3 7 l-6 6 l-9 -2 z" fill="#3c4549"></path><path d="M15 16 l5 -3 l5 3 l-1 6 l-7 0 z" fill="#323b3f"></path></pattern>
+            <pattern id="pm-soil" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#2a221b"></rect><line x1="0" y1="0" x2="0" y2="12" stroke="rgba(170,140,105,0.28)"></line></pattern>
+            <pattern id="pm-slab" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#7d7975"></rect><circle cx="4" cy="5" r="1" fill="#5f5b57"></circle><circle cx="10" cy="10" r="0.9" fill="#9a9590"></circle></pattern>
+          </defs>
+          <g class="rain" stroke="#7fc4e2" stroke-width="1.5" stroke-dasharray="12 30" opacity="0.85"><path d="M80 0 V120"></path><path d="M160 -20 V120"></path><path d="M240 10 V120"></path><path d="M320 -10 V120"></path><path d="M400 0 V120"></path><path d="M480 -30 V120"></path><path d="M560 5 V120"></path><path d="M640 -15 V120"></path><path d="M720 0 V120"></path></g>
+          <rect x="0" y="300" width="800" height="140" fill="url(#pm-soil)"></rect>
+
+          <!-- conventional -->
+          <g class="g g-conv">
+            <rect x="0" y="120" width="800" height="40" fill="url(#pm-slab)"></rect>
+            <rect x="0" y="160" width="800" height="140" fill="#2b2e30"></rect>
+            <path d="M0 116 H760" stroke="#7fc4e2" stroke-width="3" stroke-dasharray="14 8" class="flow"></path>
+            <path d="M760 116 l20 0 l0 30" stroke="#7fc4e2" stroke-width="3"></path>
+            <rect x="770" y="140" width="22" height="40" fill="#0b1012" stroke="#8a8277"></rect>
+            <g font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" class="lbl-svg"><text x="20" y="104" fill="#9fc3d3">RUNOFF ACROSS THE SURFACE → TO THE DRAIN</text><text x="20" y="232" fill="#8a8277">SEALED BASE · NO STORAGE · NO INFILTRATION</text></g>
+          </g>
+
+          <!-- permeable -->
+          <g class="g g-perm">
+            <rect x="0" y="120" width="800" height="26" fill="url(#pm-agg)"></rect>
+            <rect x="0" y="146" width="800" height="14" fill="url(#pm-bed)"></rect>
+            <rect x="0" y="160" width="800" height="140" fill="url(#pm-sub)"></rect>
+            <rect x="0" y="236" width="800" height="64" fill="#4fb3df" fill-opacity="0.22"></rect>
+            <path d="M0 236 H800" stroke="#4fb3df" stroke-opacity="0.6" stroke-dasharray="4 6"></path>
+            <g stroke="#7fc4e2" stroke-width="2" stroke-dasharray="6 5" class="flow"><path d="M120 120 V230"></path><path d="M300 120 V230"></path><path d="M480 120 V230"></path><path d="M660 120 V230"></path></g>
+            <g font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" class="lbl-svg"><text x="16" y="138" fill="#131416">1 SURFACE</text><text x="16" y="157" fill="#cdbb9e">2 BEDDING</text><text x="16" y="200" fill="#cfd8db">3 OPEN-GRADED SUB-BASE</text><text x="16" y="262" fill="#9fc3d3">4 TEMPORARY WATER STORAGE</text></g>
+          </g>
+          <g class="g g-ta g-tb">
+            <path d="M0 300 H800" stroke="#c9c2b6" stroke-width="2" stroke-dasharray="3 4"></path>
+            <text class="lbl-svg" x="16" y="320" font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" fill="#c9c2b6">5 GEOTEXTILE · SUB-GRADE</text>
+          </g>
+          <g class="g g-inf" stroke="#4fb3df" stroke-width="2.4" stroke-dasharray="6 5"><path class="flow" d="M200 304 V420"></path><path class="flow" d="M400 304 V430"></path><path class="flow" d="M600 304 V420"></path></g>
+          <g class="g g-tb">
+            <circle cx="400" cy="280" r="11" fill="#0b1012" stroke="#c9c2b6" stroke-width="2"></circle>
+            <path d="M411 280 H790" stroke="#c9c2b6" stroke-width="2"></path>
+            <text class="lbl-svg" x="560" y="270" font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" fill="#c9c2b6">OUTLET · CONTROLLED RELEASE</text>
+          </g>
+          <g class="g g-tc">
+            <path d="M0 300 H800" stroke="#e8a032" stroke-width="3"></path>
+            <circle cx="400" cy="286" r="11" fill="#0b1012" stroke="#c9c2b6" stroke-width="2"></circle><path d="M411 286 H790" stroke="#c9c2b6" stroke-width="2"></path>
+            <text class="lbl-svg" x="16" y="320" font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" fill="#e8a032">5 IMPERMEABLE LINER · NO INFILTRATION</text>
+            <text class="lbl-svg" x="560" y="276" font-family="Geist Mono, monospace" font-size="12" letter-spacing="1" fill="#c9c2b6">OUTLET · ATTENUATED RELEASE</text>
+          </g>
+        </svg>
+        <p class="cut-foot">{{pmNote}}</p>
+      </div>
+      <div class="rv">
+        <div class="layers2">
+          <div><i style="background: #a6927a;"></i><p><b>1 · The surface</b><span>Resin-bound aggregate, permeable paving with open joints, or pervious concrete. Water passes through it rather than across it.</span></p></div>
+          <div><i style="background: #5e544a;"></i><p><b>2 · Bedding or laying course</b><span>A free-draining layer that the surface is laid on, sized so fine particles do not wash down.</span></p></div>
+          <div><i style="background: #3c4549;"></i><p><b>3 · Open-graded sub-base</b><span>Clean, coarse aggregate with voids between the stones. It carries the load and holds water.</span></p></div>
+          <div><i style="background: #4fb3df;"></i><p><b>4 · Temporary storage</b><span>During heavy rain the voids fill, then release water slowly, into the ground or to an outlet.</span></p></div>
+          <div><i style="background: #2a221b; box-shadow: inset 0 0 0 1px #8a8277;"></i><p><b>5 · Sub-grade, and outlet where needed</b><span>Tested soil decides the type: full infiltration, partial infiltration with an outlet, or a lined system with no infiltration.</span></p></div>
+        </div>
+        <a class="btn btn-line" href="#contact" onClick="{{needPermeable}}" style="margin-top: 28px; color: var(--m50);">Discuss an external surface <span class="ar">→</span></a>
+      </div>
     </div>
+    <div class="decide rv">
+      <div><span class="mono">01</span><b>Soil permeability</b><p>Tested on site. It decides whether water can soak in, partly or not at all.</p></div>
+      <div><span class="mono">02</span><b>Groundwater level</b><p>A high water table, or contaminated ground, means a lined system instead of infiltration.</p></div>
+      <div><span class="mono">03</span><b>Slope</b><p>Steeper sites need the sub-base designed so water does not simply run downhill inside it.</p></div>
+      <div><span class="mono">04</span><b>Traffic loading</b><p>Footpaths, driveways and parking need different surface and sub-base build-ups.</p></div>
+      <div><span class="mono">05</span><b>Sediment &amp; clogging</b><p>Soil, sand and debris washed on from nearby areas are the main cause of clogging.</p></div>
+      <div><span class="mono">06</span><b>Maintenance</b><p>Regular sweeping or vacuum cleaning. Never sealed over, never sanded, never pressure-washed.</p></div>
+      <div><span class="mono">07</span><b>Local drainage rules</b><p>Outlets and discharge rates follow local requirements and the site's drainage design.</p></div>
+      <div><span class="mono">08</span><b>Right place</b><p>Not every surface should be permeable. Fuel areas and heavily soiled sites are usually lined or avoided.</p></div>
+    </div>
+    <div class="poem rv">
+      <span class="mono" style="color: var(--p3);">The idea</span>
+      <div><p class="big">A surface can be beautiful. It can protect. <span>And in the right place, it can let rain return to the earth.</span></p><small>Infiltration depends on site conditions, design and maintenance. Coreguard assesses each site before recommending a permeable system, and will say so when one is not suitable.</small></div>
+    </div>
+  </section>
+
+  <!-- 05 SYSTEMS -->
+  <section id="systems" class="sec dark wrap" data-sec="How systems are built" data-n="05">
+    <div class="head">
+      <div class="tag rv"><span class="mono">05</span><span class="mono">How systems are built</span></div>
+      <div class="rv"><h2>Cut through any surface<span class="red">.</span><span class="b2">Every layer has a job.</span></h2><p class="lead">Whether it is a decorative floor, a waterproofed terrace or a permeable path, performance comes from what sits beneath the finish. Choose a pillar to see typical build-ups.</p></div>
+    </div>
+    <div class="ptabs rv" role="tablist" aria-label="Pillar">
+      <sc-for list="{{pillarTabs}}" as="p" hint-placeholder-count="3"><button class="{{p.cls}}" onClick="{{p.pick}}" role="tab" aria-selected="{{p.sel}}"><i style="background: {{p.col}};"></i>{{p.name}}</button></sc-for>
+    </div>
+    <div class="core-grid">
+      <sc-for list="{{coresShown}}" as="c" hint-placeholder-count="3">
+        <div class="core-it">
+          <div class="core" style="--top: {{c.top}};"><sc-for list="{{c.layers}}" as="l" hint-placeholder-count="4"><div class="cl {{l.tx}}" style="height: {{l.h}}px; background-color: {{l.c}};"></div></sc-for></div>
+          <div class="core-cap"><span class="mono" style="color: {{c.col}};"><i style="background: {{c.col}};"></i>{{c.n}} · {{c.kind}}</span><h3>{{c.name}}</h3></div>
+          <ol><sc-for list="{{c.layers}}" as="l" hint-placeholder-count="4"><li><i style="background-color: {{l.c}};"></i>{{l.t}}</li></sc-for></ol>
+        </div>
+      </sc-for>
+    </div>
+    <p class="mono" style="color: var(--m400); margin-top: 56px;">Illustrative build-ups · final specification set per site after assessment</p>
+  </section>
+
+  <!-- 06 STARTING POINT -->
+  <section id="paths" class="sec wrap" data-sec="Your starting point" data-n="06">
+    <div class="head">
+      <div class="tag rv"><span class="mono">06</span><span class="mono">Where are you starting from?</span></div>
+      <div class="rv"><h2>Find the right conversation<span class="red">.</span><span class="b2">No technical terms needed.</span></h2></div>
+    </div>
+    <div class="jtabs" role="tablist" aria-label="Audience">
+      <sc-for list="{{auds}}" as="a" hint-placeholder-count="3"><button class="jt {{a.cls}}" onClick="{{a.pick}}" role="tab" aria-selected="{{a.sel}}"><span class="mono">{{a.n}} · {{a.who}}</span><span class="t">{{a.name}}</span></button></sc-for>
+    </div>
+    <div class="jintro"><span class="mono" style="color: var(--muted);">For {{aud.whoLong}}</span><p class="serif">{{aud.story}}</p></div>
+    <div class="jmatrix">
+      <sc-for list="{{audCols}}" as="c" hint-placeholder-count="3">
+        <div class="jcol">
+          <span class="mono" style="color: {{c.col}};"><i style="background: {{c.col}};"></i>{{c.pname}}</span>
+          <h4>{{c.title}}</h4>
+          <ul><sc-for list="{{c.items}}" as="it" hint-placeholder-count="3"><li>{{it}}</li></sc-for></ul>
+          <a class="btn btn-ink" href="#contact" onClick="{{c.pick}}">{{c.cta}} <span class="ar">→</span></a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 07 DIAGNOSTIC -->
+  <section id="approach" class="sec dx wrap" data-ch="{{ch}}" data-sec="The Diagnostic" data-n="07">
+    <div class="head">
+      <div class="tag rv"><span class="mono">07</span><span class="mono">The Coreguard Diagnostic</span></div>
+      <div class="rv"><h2>Understand before we apply<span class="red">.</span><span class="b2">Assessment leads to the right solution.</span></h2><p class="lead">Every surface has a story, and every problem has a cause. Whether you need a new floor, protection from water or a better external surface, the first step is understanding the site.</p></div>
+    </div>
+    <div class="assess rv">
+      <div><span class="mono" style="color: var(--p1);"><i style="background: var(--p1);"></i>Designed surfaces</span><h4>What the floor must look like, and survive</h4><p>Design intent, use and traffic, substrate condition and moisture, and how the space must be kept clean.</p></div>
+      <div><span class="mono" style="color: var(--p2);"><i style="background: var(--p2);"></i>Building protection</span><h4>Where water gets in, and why</h4><p>Symptoms and history, ingress paths, joints and interfaces, substrate condition and exposure.</p></div>
+      <div><span class="mono" style="color: var(--p3);"><i style="background: var(--p3);"></i>Permeable surfaces</span><h4>Whether the ground can take it</h4><p>Soil permeability, groundwater, slope, loading, sediment sources and local drainage requirements.</p></div>
+    </div>
+    <div class="ex-h rv"><h3>Example: one leak, from stain to handover</h3><span class="ill-tag mono">Illustrative case · not a Coreguard project</span></div>
     <sc-if value="{{showMethodNote}}" hint-placeholder-val="{{ true }}">
       <div class="pend"><span class="mono">Pending approval</span><span>Example workflow. The methods shown (water-path tracing, substrate and falls checks, thickness checks, hold points and flood testing) are not yet published commitments. They become standard only once the Coreguard technical team confirms the methods, acceptance criteria and records.</span></div>
     </sc-if>
+    <div class="chap" role="tablist" aria-label="Diagnostic stages">
+      <sc-for list="{{chapters}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" onClick="{{c.go}}" role="tab" aria-selected="{{c.isCur}}"><span class="mono">{{c.n}}</span><span class="t">{{c.k}}</span></button></sc-for>
+    </div>
     <div class="dx-grid">
       <div class="dsheet">
-        <div class="dsheet-top mono"><span>Detail <b>D-01</b> · Terrace slab, parapet &amp; outlet · NTS</span><span class="ill-tag">Illustrative case · not a Coreguard project</span></div>
+        <div class="dsheet-top mono"><span>Detail <b>D-01</b> · Terrace slab, parapet &amp; outlet · NTS</span><span class="ill-tag">Illustrative example</span></div>
         <div class="draw">
           <svg viewBox="0 0 900 520" fill="none" role="img" aria-label="{{cur.alt}}">
             <defs>
@@ -870,7 +1086,6 @@
             <g class="g g-ver">
               <path d="M70 168 L779 168 L779 199 L700 201 L70 191 Z" fill="#4fb3df" fill-opacity="0.3"></path>
               <path d="M70 168 H779" stroke="#4fb3df" stroke-width="1.5"></path>
-              <path d="M850 168 v24 M842 168 h16 M842 192 h16" stroke="#131416"></path>
               <g class="lbl-svg" font-family="Geist Mono, monospace" font-size="10.5" letter-spacing="0.8"><text x="100" y="156" fill="#2a83ad">FLOOD TEST · TEST WATER HELD ON TERRACE</text><text x="470" y="330" fill="#131416">Ceiling checked · no ingress</text></g>
               <circle cx="452" cy="326" r="9" fill="#d63b25"></circle><path d="M448 326 l3 3 l6 -6" stroke="#fff" stroke-width="1.8"></path>
             </g>
@@ -878,13 +1093,11 @@
         </div>
         <div class="narr">
           <div><span class="mono red">Stage {{cur.n}} · {{cur.k}}</span><h3>{{cur.title}}</h3><p class="serif">{{cur.narr}}</p></div>
-          <div>
-            <ul><sc-for list="{{cur.does}}" as="d" hint-placeholder-count="3"><li>{{d}}</li></sc-for></ul>
-            <div class="get"><span class="mono">You receive · <b>{{cur.get}}</b></span><div class="navb"><button onClick="{{prev}}" disabled="{{atStart}}" aria-label="Previous stage">←</button><button onClick="{{next}}" disabled="{{atEnd}}" aria-label="Next stage">→</button></div></div>
-          </div>
+          <div><ul><sc-for list="{{cur.does}}" as="d" hint-placeholder-count="3"><li>{{d}}</li></sc-for></ul><p class="get"><span class="mono">You receive · <b>{{cur.get}}</b></span></p></div>
+          <div class="navb"><button onClick="{{prev}}" disabled="{{atStart}}" aria-label="Previous stage">←</button><button onClick="{{next}}" disabled="{{atEnd}}" aria-label="Next stage">→</button></div>
         </div>
       </div>
-      <aside class="file" aria-label="Case file">
+      <aside class="file" aria-label="Example case file">
         <div class="file-top"><div><span class="mono">Example case file</span><b>CG-AR-0001 · Terrace</b></div><div><span class="mono">Status</span><b>{{fileStatus}}</b></div></div>
         <sc-for list="{{entries}}" as="e" hint-placeholder-count="5">
           <div class="ent {{e.cls}}">
@@ -900,125 +1113,121 @@
     </div>
   </section>
 
-  <!-- 06 CAPABILITIES -->
-  <section id="cores" class="sec dark wrap" data-sec="Capabilities" data-n="06">
+  <!-- 08 MATERIALS -->
+  <section id="materials" class="sec mat wrap" data-sec="Materials &amp; technology" data-n="08">
     <div class="head">
-      <div class="tag rv"><span class="mono">06</span><span class="mono">Capabilities · core samples</span></div>
-      <div class="rv"><h2>Cut through any system<span class="red">.</span><span class="b2">Every layer has a job.</span></h2><p class="lead">Building protection keeps water out of the structure. Surface systems give it a floor, deck or path that performs. Six systems we engineer, drilled through.</p></div>
+      <div class="tag rv"><span class="mono">08</span><span class="mono">Materials &amp; technology</span></div>
+      <div class="rv"><h2>The system for the structure<span class="red" style="color: #fff;">.</span><span class="b2">Never the other way round.</span></h2><p class="lead">Many surfaces look alike and behave very differently. A resin floor, a resin-bonded path and a resin-bound path can all be called "resin", but only one of them lets water through.</p></div>
     </div>
-    <div class="core-grid">
-      <sc-for list="{{cores}}" as="c" hint-placeholder-count="6">
-        <div class="core-it rv">
-          <div class="core" style="--top: {{c.top}};"><sc-for list="{{c.layers}}" as="l" hint-placeholder-count="4"><div class="cl {{l.tx}}" style="height: {{l.h}}px; background-color: {{l.c}};"></div></sc-for></div>
-          <div class="core-cap"><span class="mono">{{c.n}} · {{c.kind}}</span><h3>{{c.name}}</h3></div>
-          <ol><sc-for list="{{c.layers}}" as="l" hint-placeholder-count="4"><li><i style="background-color: {{l.c}};"></i>{{l.t}}</li></sc-for></ol>
-        </div>
-      </sc-for>
+    <div class="cmp-wrap rv">
+      <table class="cmp">
+        <thead><tr><th>Surface</th><th>How it is made</th><th>Lets water through?</th><th>Typically used for</th></tr></thead>
+        <tbody>
+          <tr><td>Epoxy &amp; PU floors</td><td>Liquid resin systems applied as a seamless coating or screed over a prepared substrate.</td><td><span class="no">Impermeable</span></td><td>Interiors, decorative and industrial floors, parking decks, wet areas.</td></tr>
+          <tr><td>Terrazzo-style &amp; aggregate floors</td><td>Aggregate set in a cementitious or resin matrix, then ground and polished.</td><td><span class="no">Impermeable</span></td><td>Lobbies, residences, retail and feature floors.</td></tr>
+          <tr><td>Resin-bonded aggregate</td><td>Resin spread on a base, with loose aggregate scattered over it.</td><td><span class="no">Impermeable</span></td><td>Textured, slip-resistant finishes on sealed bases.</td></tr>
+          <tr><td>Resin-bound aggregate</td><td>Aggregate mixed with resin, then trowelled to a smooth, open finish.</td><td><span class="yes">Permeable on a permeable base</span></td><td>Pathways, driveways, courtyards, tree surrounds.</td></tr>
+          <tr><td>Permeable paving</td><td>Paving units with open, gravel-filled joints over a free-draining build-up.</td><td><span class="yes">Permeable</span></td><td>Driveways, parking bays, landscaped areas.</td></tr>
+          <tr><td>Pervious concrete</td><td>Concrete made with little or no fine aggregate, leaving connected voids.</td><td><span class="yes">Permeable</span></td><td>Paths, light-traffic areas, landscaping.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="field-h rv"><span class="mono" style="color: var(--signal);">Surface systems in the field</span><span class="mono" style="color: var(--m400);">Photos · Coreguard company profile</span></div>
-    <div class="field rv">
-      <figure><img src="./assets/floor-hero.png" alt="Polished decorative floor finish in an interior" loading="lazy"><figcaption class="mono">Decorative floor</figcaption></figure>
-      <figure><img src="./assets/floor-interior.png" alt="Interior epoxy floor" loading="lazy"><figcaption class="mono">Interior epoxy</figcaption></figure>
-      <figure><img src="./assets/floor-decorative.png" alt="Liquid-ground decorative floor" loading="lazy"><figcaption class="mono">Liquid grinding</figcaption></figure>
-      <figure><img src="./assets/floor-parking.png" alt="Parking deck coating with lane marking" loading="lazy"><figcaption class="mono">Parking deck</figcaption></figure>
-      <figure><img src="./assets/exterior.png" alt="Permeable granule pathway" loading="lazy"><figcaption class="mono">Permeable path</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- 07 MATERIALS -->
-  <section id="materials" class="sec wrap" style="background: var(--signal); color: #fff;" data-sec="Materials" data-n="07">
-    <div class="tag" style="border-top-color: rgba(255, 255, 255, 0.4); max-width: 300px;"><span class="mono" style="color: #fff;">07</span><span class="mono" style="color: rgba(255, 255, 255, 0.75);">Materials &amp; technology</span></div>
-    <p class="mat-t rv">We select the system for the structure<span class="dim">. Never the structure for the system.</span></p>
     <div class="mat-sub rv">
       <span class="mono" style="opacity: 0.85;">Brand-independent</span>
       <div>
-        <p class="serif">We select and apply building protection and surface systems based on project requirements, substrate conditions and intended performance. Our solutions may incorporate technologies from established manufacturers, including Sika, where appropriate. The system used is named in each project's written specification.</p>
+        <p class="serif">We select and apply surface and protection systems based on project requirements, substrate conditions and intended performance. Our solutions may incorporate technologies from established manufacturers, including Sika, where appropriate. The system used is named in each project's written specification.</p>
         <div class="mat-cols">
-          <div><span class="mono">01</span><b>Substrate</b><p>What it will bond to.</p></div>
-          <div><span class="mono">02</span><b>Exposure</b><p>What it must resist.</p></div>
-          <div><span class="mono">03</span><b>Performance</b><p>What it must deliver.</p></div>
+          <div><span class="mono">01</span><b>Substrate</b><p>What it will bond to, or drain into.</p></div>
+          <div><span class="mono">02</span><b>Exposure</b><p>Traffic, water, sun and chemicals.</p></div>
+          <div><span class="mono">03</span><b>Design intent</b><p>Colour, texture and finish.</p></div>
           <div><span class="mono">04</span><b>Disclosure</b><p>What it is, in writing.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 08 PROJECTS -->
-  <section id="record" class="sec proj wrap" data-sec="Projects" data-n="08">
+  <!-- 09 PROJECTS -->
+  <section id="record" class="sec proj wrap" data-sec="Projects" data-n="09">
     <div class="head">
-      <div class="tag rv"><span class="mono">08</span><span class="mono">The Coreguard Project Record</span></div>
-      <div class="rv"><h2>The work. The method<span class="red">.</span><span class="b2">The result.</span></h2><p class="lead">Every project will be published as a case file in the same format as the Diagnostic: findings, specification, execution and verification, with site photographs.</p></div>
+      <div class="tag rv"><span class="mono">09</span><span class="mono">The Coreguard Project Record</span></div>
+      <div class="rv"><h2>The work. The method<span class="red">.</span><span class="b2">The result.</span></h2><p class="lead">Finished floors, protection projects and permeable surfaces, each published with the brief, the system chosen, the execution and site photographs.</p></div>
     </div>
-    <div class="legend2 mono rv"><span><i style="background: var(--signal);"></i>Verified case file · real project, evidence on record</span><span><i style="background: var(--water);"></i>Illustrative · explains our method, not a project</span><span><i style="background: var(--heat);"></i>In preparation · evidence being collected</span></div>
+    <div class="legend2 mono rv"><span><i style="background: var(--signal);"></i>Verified · real project, evidence on record</span><span><i style="background: var(--water);"></i>Illustrative · explains our method</span><span><i style="background: var(--heat);"></i>In preparation · evidence being collected</span></div>
+    <div class="rtabs rv" role="tablist" aria-label="Filter projects">
+      <sc-for list="{{recTabs}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" onClick="{{t.pick}}" role="tab" aria-selected="{{t.sel}}"><i style="background: {{t.col}};"></i>{{t.name}}</button></sc-for>
+    </div>
     <table class="reg-t rv">
-      <thead><tr><th>Record</th><th>Project</th><th>Building area</th><th>Status</th></tr></thead>
+      <thead><tr><th>Record</th><th>Project</th><th>Pillar</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td class="no">CG-AR-0001</td><td class="ti">Terrace leak, stain to sign-off</td><td class="mut">Residential · Terrace</td><td><a class="pill ill" href="#approach"><i></i>Illustrative · view</a></td></tr>
-        <tr><td class="no">CG-PR-001</td><td class="ti">Terrace waterproofing</td><td class="mut">Residential · Terrace</td><td><span class="pill"><i></i>In preparation</span></td></tr>
-        <tr><td class="no">CG-PR-002</td><td class="ti">Basement sealing</td><td class="mut">Commercial · Basement</td><td><span class="pill"><i></i>In preparation</span></td></tr>
-        <tr><td class="no">CG-PR-003</td><td class="ti">Parking deck system</td><td class="mut">Commercial · Parking</td><td><span class="pill"><i></i>In preparation</span></td></tr>
-        <tr><td class="no">CG-PR-004</td><td class="ti">Industrial floor</td><td class="mut">Industry · Floor</td><td><span class="pill"><i></i>In preparation</span></td></tr>
+        <sc-for list="{{recs}}" as="r" hint-placeholder-count="6">
+          <tr><td class="no">{{r.no}}</td><td class="ti">{{r.t}}</td><td class="mut"><i style="background: {{r.col}};"></i>{{r.p}}</td><td>
+            <sc-if value="{{r.ill}}" hint-placeholder-val="{{ false }}"><a class="pill ill" href="#approach"><i></i>Illustrative · view</a></sc-if>
+            <sc-if value="{{r.prep}}" hint-placeholder-val="{{ true }}"><span class="pill"><i></i>In preparation</span></sc-if>
+          </td></tr>
+        </sc-for>
       </tbody>
     </table>
   </section>
 
-  <!-- 09 CONTACT -->
-  <section id="contact" class="sec dark wrap" data-sec="Contact" data-n="09">
+  <!-- 10 CONTACT -->
+  <section id="contact" class="sec dark wrap" data-sec="Contact" data-n="10">
     <div class="head">
-      <div class="tag rv"><span class="mono">09</span><span class="mono">Start a conversation</span></div>
-      <div class="rv"><h2>{{segA}}<span class="red">.</span><span class="b2">{{segB}}</span></h2><p class="lead">{{segIntro}}</p></div>
+      <div class="tag rv"><span class="mono">10</span><span class="mono">Start a conversation</span></div>
+      <div class="rv"><h2>Tell us what you need<span class="red">.</span><span class="b2">{{segB}}</span></h2><p class="lead">{{segIntro}}</p></div>
     </div>
     <div class="found-grid">
       <div class="direct rv">
         <div><span class="mono">Call</span><a href="tel:+919819330556">+91 98193 30556</a><a href="tel:+919833602669">+91 98336 02669</a></div>
         <div><span class="mono">WhatsApp</span><a href="https://wa.me/{{waTo}}" target="_blank" rel="noopener">{{waLabel}}</a></div>
         <div><span class="mono">Email</span><a href="mailto:info@coreguard.in">info@coreguard.in</a></div>
-        <div><span class="mono">Company profile</span><button class="dl-b" type="button" onClick="{{openGate}}">Download PDF <span aria-hidden="true">↓</span> <small>2.5 MB</small></button></div>
+        <div><span class="mono">Company profile</span><button class="dl-b" type="button" onClick="{{openGate}}">Download PDF <span aria-hidden="true">↓</span> <small>{{pdfSize}}</small></button></div>
         <div><span class="mono">Hours · Service</span><span class="v">Mon–Sat, 10:00–18:00 · Pan-India</span></div>
       </div>
       <div class="rv">
+        <span class="q-label mono">What do you need?</span>
+        <div class="needs" role="radiogroup" aria-label="Requirement">
+          <sc-for list="{{needs}}" as="n" hint-placeholder-count="4"><button type="button" class="need {{n.cls}}" onClick="{{n.pick}}" role="radio" aria-checked="{{n.sel}}"><i style="background: {{n.col}};"></i><b>{{n.name}}</b><span class="mono">{{n.sub}}</span></button></sc-for>
+        </div>
+        <span class="q-label mono">For</span>
         <div class="segs" role="tablist" aria-label="Enquiry type">
-          <button class="seg {{segCls.homes}}" type="button" onClick="{{goHomesSeg}}" role="tab" aria-selected="{{segSel.homes}}">Home</button>
-          <button class="seg {{segCls.buildings}}" type="button" onClick="{{goBuildingsSeg}}" role="tab" aria-selected="{{segSel.buildings}}">Building</button>
-          <button class="seg {{segCls.industry}}" type="button" onClick="{{goIndustrySeg}}" role="tab" aria-selected="{{segSel.industry}}">Industry</button>
+          <button class="seg {{segCls.homes}}" type="button" onClick="{{goHomesSeg}}" role="tab" aria-selected="{{segSel.homes}}">A home</button>
+          <button class="seg {{segCls.buildings}}" type="button" onClick="{{goBuildingsSeg}}" role="tab" aria-selected="{{segSel.buildings}}">Commercial</button>
+          <button class="seg {{segCls.industry}}" type="button" onClick="{{goIndustrySeg}}" role="tab" aria-selected="{{segSel.industry}}">Industry &amp; projects</button>
         </div>
         <form id="cg-form" class="form" data-wa="{{waTo}}" novalidate>
           <input type="hidden" name="Enquiry type" value="{{segName}}">
-          <label><span class="mono">Name</span><input name="Name" type="text" autocomplete="name" placeholder="Your name" required></label>
-          <label><span class="mono">Phone</span><input name="Phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98000 00000" required></label>
+          <input type="hidden" name="Requirement" value="{{needName}}">
+          <sc-if value="{{hasPicked}}" hint-placeholder-val="{{ false }}">
+            <input type="hidden" name="Building area" value="{{pickedArea}}">
+            <div class="full picked mono"><span>From the System Map · <b>{{pickedArea}}</b></span><button type="button" onClick="{{clearPicked}}">Remove</button></div>
+          </sc-if>
+          <label><span class="mono">Name</span><input name="Name" type="text" autocomplete="name" placeholder="Your name"></label>
+          <label><span class="mono">Phone</span><input name="Phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98000 00000"></label>
+          <label><span class="mono">{{emailLabel}}</span><input name="Email" type="email" autocomplete="email" placeholder="you@email.com"></label>
           <sc-if value="{{isHomes}}" hint-placeholder-val="{{ true }}">
-            <label><span class="mono">Email (optional)</span><input name="Email" type="email" autocomplete="email" placeholder="you@email.com"></label>
             <label><span class="mono">Locality</span><input name="Locality" type="text" placeholder="e.g. Andheri West, Mumbai"></label>
-            <label class="full"><span class="mono">Where is the problem?</span><select name="Area"><option>Terrace / roof</option><option>Bathroom / wet area</option><option>Basement</option><option>External walls</option><option>Flooring or decorative surface</option><option>Not sure</option></select></label>
           </sc-if>
-          <sc-if value="{{isBuildings}}" hint-placeholder-val="{{ false }}">
-            <label><span class="mono">Email</span><input name="Email" type="email" autocomplete="email" placeholder="you@company.in"></label>
-            <label><span class="mono">Company / property</span><input name="Company" type="text" autocomplete="organization" placeholder="Organisation or building"></label>
-            <label><span class="mono">Scope</span><select name="Scope"><option>Podium / roof waterproofing</option><option>Parking deck</option><option>Expansion joints</option><option>Commercial flooring</option><option>Maintenance planning</option><option>Other</option></select></label>
-            <label><span class="mono">Approx. area</span><input name="Area (sq ft)" type="text" inputmode="numeric" placeholder="e.g. 12,000 sq ft"></label>
+          <sc-if value="{{notHomes}}" hint-placeholder-val="{{ false }}">
+            <label><span class="mono">Company &amp; role</span><input name="Company / role" type="text" autocomplete="organization" placeholder="e.g. Facility manager, ABC Towers"></label>
           </sc-if>
-          <sc-if value="{{isIndustry}}" hint-placeholder-val="{{ false }}">
-            <label><span class="mono">Email</span><input name="Email" type="email" autocomplete="email" placeholder="you@company.in"></label>
-            <label><span class="mono">Company &amp; role</span><input name="Company / role" type="text" autocomplete="organization" placeholder="e.g. Architect, ABC Associates"></label>
-            <label><span class="mono">Requirement</span><select name="Requirement"><option>Industrial epoxy / PU flooring</option><option>Chemical-resistant system</option><option>Specification support</option><option>Waterproofing package</option><option>Multi-site programme</option></select></label>
-            <label><span class="mono">Project stage</span><select name="Stage"><option>Design / specification</option><option>Tender</option><option>Under construction</option><option>Existing facility</option></select></label>
-          </sc-if>
-          <label class="full"><span class="mono">{{segAsk}}</span><textarea name="Details" placeholder="{{segPh}}"></textarea></label>
+          <label><span class="mono">Approx. area</span><input name="Area (sq ft)" type="text" inputmode="numeric" placeholder="e.g. 1,200 sq ft"></label>
+          <label><span class="mono">Timeline</span><select name="Timeline"><option>Not decided</option><option>Within a month</option><option>1–3 months</option><option>Later this year</option><option>At design / tender stage</option></select></label>
+          <label class="full"><span class="mono">{{needAsk}}</span><textarea name="Details" placeholder="{{needPh}}"></textarea></label>
           <label class="full consent"><input type="checkbox" name="consent"><span>Coreguard may contact me on WhatsApp or phone about this enquiry, as described in the <a href="#privacy">privacy notice</a>.</span></label>
-          <div class="full" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;"><span id="cg-msg" class="msg mono" role="status"></span><button type="submit" class="btn btn-red">{{segCta}} <span class="ar">→</span></button></div>
+          <div class="full" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;"><span id="cg-msg" class="msg mono" role="status"></span><button type="submit" class="btn btn-red">Send on WhatsApp <span class="ar">→</span></button></div>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- PRIVACY NOTICE (draft) -->
+  <!-- PRIVACY -->
   <section id="privacy" class="sec priv wrap" style="padding-top: 80px; padding-bottom: 80px;">
     <div class="head">
       <div class="tag"><span class="mono">Privacy notice</span><span class="mono">Draft · for legal review</span></div>
       <div><h2 style="font-size: clamp(32px, 3.6vw, 56px);">How we handle your enquiry<span class="red">.</span><span class="b2">Plain language, before you send.</span></h2><p class="lead">What happens to the details you share with us, and how to change your mind. Draft wording, to be reviewed against India's Digital Personal Data Protection Act, 2023 and its rules before launch.</p></div>
     </div>
     <div class="priv-grid">
-      <div><span class="mono">01</span><h4>What we collect</h4><p>Your name, phone number, and anything you choose to add: email, locality or company, the type of property and a description of the problem.</p></div>
+      <div><span class="mono">01</span><h4>What we collect</h4><p>Your name, phone number, and anything you choose to add: email, locality or company, the type of property, your requirement and a description of it.</p></div>
       <div><span class="mono">02</span><h4>Why we collect it</h4><p>Only to respond to your enquiry, arrange an assessment and send a proposal. We do not sell it or use it for unrelated marketing.</p></div>
       <div><span class="mono">03</span><h4>Where it goes</h4><p>The form opens WhatsApp with your message pre-filled. Nothing is sent until you press send. WhatsApp's own terms apply to that message.</p></div>
       <div><span class="mono">04</span><h4>How long we keep it</h4><p>If your enquiry does not become a project, your details are deleted within 12 months. If it does, project records are kept only as long as tax and legal requirements oblige us to.</p></div>
@@ -1032,9 +1241,9 @@
     <div class="gate" role="dialog" aria-modal="true" aria-labelledby="cg-gate-t">
       <div class="gate-card">
         <button class="gate-x" id="cg-gate-x" type="button" onClick="{{closeGate}}" aria-label="Close">×</button>
-        <span class="mono red">Company profile · PDF · 2.5 MB</span>
+        <span class="mono red">Company profile · PDF · {{pdfSize}}</span>
         <h3 id="cg-gate-t">Where should we follow up<span class="red">?</span></h3>
-        <p class="serif">Leave your details and the download starts straight away. We may follow up once to understand your site.</p>
+        <p class="serif">Designed surfaces, building protection and permeable surfaces in one document. Leave your details and the download starts straight away.</p>
         <form id="cg-gate-form" class="gform" data-wa="{{waTo}}" novalidate>
           <label><span class="mono">Name</span><input name="Name" type="text" autocomplete="name" placeholder="Your name"></label>
           <label><span class="mono">Phone</span><input name="Phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98000 00000"></label>
@@ -1049,10 +1258,10 @@
 
   <!-- FOOTER -->
   <footer class="foot">
-    <div><img class="logo" src="./assets/coreguard-logo.png" alt="Coreguard" width="139" height="28"><span class="mono">Building protection &amp; surface systems · Beyond the surface. Engineered to protect.</span></div>
-    <div><span class="mono">Index</span><span class="sm"><a href="#map">System map</a><a href="#approach">Diagnostic</a><a href="#record">Projects</a><button class="dl-b" type="button" onClick="{{openGate}}" style="font-size: 14.5px;">Company profile (PDF)</button></span></div>
+    <div><img class="logo" src="./assets/coreguard-logo.png" alt="Coreguard" width="138" height="28"><span class="mono">Designed surfaces · Building protection · Permeable surfaces</span></div>
+    <div><span class="mono">Explore</span><span class="sm"><a href="#surfaces">Designed surfaces</a><a href="#protection">Building protection</a><a href="#permeable">Permeable surfaces</a><a href="#record">Projects</a></span></div>
     <div><span class="mono">Call</span><span class="sm"><a href="tel:+919819330556">+91 98193 30556</a><a href="tel:+919833602669">+91 98336 02669</a></span></div>
-    <div><span class="mono">Write</span><span class="sm"><a href="mailto:info@coreguard.in">info@coreguard.in</a><span>Pan-India · Mon–Sat</span></span></div>
+    <div><span class="mono">Write</span><span class="sm"><a href="mailto:info@coreguard.in">info@coreguard.in</a><button class="dl-b" type="button" onClick="{{openGate}}" style="font-size: 14.5px;">Company profile (PDF)</button></span></div>
     <div><span class="mono">© 2026</span><span class="sm"><span>Coreguard</span><a href="#privacy">Privacy notice</a></span></div>
   </footer>
 
@@ -1062,57 +1271,119 @@
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { aud: 'homes', area: 'terrace', layer: 2, ch: 1, idxOpen: false, menuOpen: false };
+    this.state = { aud: 'homes', need: 'surfaces', fin: 0, area: 'terrace', ch: 1, pillar: 'surfaces', pm: 'perm', ty: 'A', rec: 'all', idxOpen: false, menuOpen: false, gateOpen: false, pickedArea: '' };
   }
   renderVals() {
     var self = this, st = this.state;
-    var SECS = [['cg-hero', 'Beyond the surface'], ['system', 'The system'], ['paths', 'Your starting point'], ['map', 'System map'], ['approach', 'The Diagnostic'], ['cores', 'Capabilities'], ['materials', 'Materials'], ['record', 'Projects'], ['contact', 'Contact']]
-      .map(function (s, i) { return { id: s[0], name: s[1], n: '0' + (i + 1) }; });
+    var PCOL = { surfaces: 'var(--p1)', protection: 'var(--p2)', permeable: 'var(--p3)' };
+    var PNAME = { surfaces: 'Designed surfaces', protection: 'Building protection', permeable: 'Permeable surfaces' };
+    var SECS = [['cg-hero', 'Coreguard'], ['surfaces', 'Designed surfaces'], ['protection', 'Building protection'], ['permeable', 'Permeable surfaces'], ['systems', 'How systems are built'], ['paths', 'Your starting point'], ['approach', 'The Diagnostic'], ['materials', 'Materials & technology'], ['record', 'Projects'], ['contact', 'Contact']]
+      .map(function (s, i) { return { id: s[0], name: s[1], n: (i < 9 ? '0' : '') + (i + 1) }; });
 
-    var LAYERS = [
-      { name: 'Prepared substrate', sw: '#6e6a64', job: 'A sound, clean and correctly sloped base. Every system is only as good as what it is bonded to.', fail: 'The system fails with the substrate: debonding, ponding and cracks reflecting straight through.', what: 'Crack repair, grinding, re-sloping to falls, moisture checks.' },
-      { name: 'Primer', sw: '#e8a032', job: 'Seals the pores of the substrate and creates the bond between the structure and the system.', fail: 'Blistering and peeling, often within the first seasons of heat.', what: 'Substrate-compatible primers matched to the membrane.' },
-      { name: 'Membrane', sw: '#d63b25', job: 'The continuous waterproof barrier itself. Chosen for the exposure: sun, standing water or water under pressure.', fail: 'Water reaches the slab, and eventually the room below.', what: 'Liquid-applied PU, cementitious or crystalline systems, depending on the area.' },
-      { name: 'Reinforcement', sw: '#b9b0a3', job: 'Bridges the places a building moves: cracks, joints, corners, upturns and outlets.', fail: 'The membrane splits exactly where movement concentrates.', what: 'Reinforcing fabric at joints, coves at parapets, outlet collars.' },
-      { name: 'Protective topcoat', sw: '#f2eee7', job: 'Shields the membrane from UV, foot traffic and wear so it performs for its full life.', fail: 'The membrane degrades early under sun and traffic.', what: 'UV-stable coatings or wearing courses suited to use.' }
+    var FIN = [
+      { name: 'Decorative epoxy', kind: 'Seamless · gloss to matte', tx: 'tx-epoxy', photo: './assets/floor-interior.png', cap: 'Decorative epoxy · company profile photo',
+        story: 'A seamless, jointless surface in solid colours or subtle effects. Easy to clean, and it carries light across a room.', where: ['Homes', 'Showrooms', 'Offices', 'Clinics'],
+        spec: 'Substrate moisture and strength, traffic, cleaning regime, slip requirement and the finish level you want.' },
+      { name: 'PU & seamless resin', kind: 'Softer underfoot · flexible', tx: 'tx-pu', photo: '', cap: 'Texture study',
+        story: 'Polyurethane and other seamless resin systems give a quieter, more forgiving surface, and tolerate movement and temperature change better.', where: ['Retail', 'Hospitality', 'Schools', 'Studios'],
+        spec: 'Expected movement, UV exposure, chemical contact and the feel underfoot you are after.' },
+      { name: 'Terrazzo-style & aggregate', kind: 'Ground and polished', tx: 'tx-terrazzo', photo: './assets/floor-hero.png', cap: 'Aggregate finish · company profile photo',
+        story: 'Chosen aggregates set in a matrix and ground back to reveal depth and pattern. Each floor is one of a kind.', where: ['Lobbies', 'Residences', 'Retail', 'Feature floors'],
+        spec: 'Aggregate selection, matrix type, grinding level, joints and the substrate the floor sits on.' },
+      { name: 'Liquid-grinding finishes', kind: 'Poured and ground in place', tx: 'tx-terrazzo', photo: './assets/floor-decorative.png', cap: 'Liquid grinding · company profile photo',
+        story: 'A poured-and-ground aggregate finish with real texture, an alternative to tile or natural stone across large areas.', where: ['Courtyards', 'Lobbies', 'Indoor & outdoor'],
+        spec: 'Area and access, aggregate and colour, whether the space is indoor or outdoor, and the polish required.' },
+      { name: 'Flake & quartz systems', kind: 'Broadcast · textured', tx: 'tx-flake', photo: '', cap: 'Texture study',
+        story: 'Coloured flakes or quartz granules broadcast into resin, then sealed. Hard-wearing, slip-resistant and forgiving of daily marks.', where: ['Garages', 'Kitchens', 'Changing rooms', 'Corridors'],
+        spec: 'Blend and density of broadcast, slip rating, topcoat type and how wet the area gets.' },
+      { name: 'Textured & specialist finishes', kind: 'Anti-slip · bespoke', tx: 'tx-texture', photo: '', cap: 'Texture study',
+        story: 'Textures, inlays and specialist finishes where a space needs grip, a pattern or a particular effect.', where: ['Ramps', 'Wet areas', 'Hospitality', 'Bespoke'],
+        spec: 'Slip requirement, cleaning, pattern or inlay design and the wear the area will see.' },
+      { name: 'Industrial with intent', kind: 'Performance + appearance', tx: 'tx-industrial', photo: './assets/floor-parking.png', cap: 'Parking deck · company profile photo',
+        story: 'Production, warehouse and parking floors where heavy traffic, chemicals and hygiene matter, and the floor still has to look right.', where: ['Warehouses', 'Factories', 'Parking', 'Kitchens'],
+        spec: 'Loads and wheel types, chemicals, temperature, hygiene, line marking and downtime available.' },
+      { name: 'Outdoor decorative', kind: 'Decks · paths · surrounds', tx: 'tx-outdoor', photo: './assets/pool-deck.png', cap: 'Exterior deck · company profile photo',
+        story: 'UV-stable decks, pool surrounds and decorative paths made for sun, water and bare feet. Some outdoor finishes can also be permeable.', where: ['Pool decks', 'Terraces', 'Balconies', 'Pathways'],
+        spec: 'Sun and UV, water and chlorine, slip resistance, drainage and whether the surface should let water through.' }
     ];
-    var li = st.layer;
-    var layers = LAYERS.map(function (l, i) { return Object.assign({}, l, { i: i, n: '0' + (i + 1), cls: i === li ? 'on' : 'dim', on: i === li ? 'on' : '', sel: i === li, pick: function () { self.setState({ layer: i }); } }); });
-    var layersTop = layers.slice().reverse();
-
-    var AUD = {
-      homes: { n: '01', name: 'Homes', who: 'Residential', whoLong: 'homeowners and housing societies', title: 'Protect your home', seg: 'homes',
-        img: './assets/floor-hero.png', alt: 'Polished decorative floor in a residential interior',
-        story: 'You have repainted the ceiling twice and the patch keeps coming back. You need someone to find out why, and to still be accountable next monsoon.',
-        problems: ['Terrace and roof leakage', 'Bathroom seepage to the flat below', 'Damp basement or ground-floor walls', 'Tired floors and outdoor surfaces'],
-        gets: ['The cause explained in plain language', 'One team accountable from survey to handover', 'A written record of what was done'], cta: 'Discuss a property issue' },
-      buildings: { n: '02', name: 'Buildings', who: 'Commercial', whoLong: 'commercial buildings and facility managers', title: 'Protect your asset', seg: 'buildings',
-        img: './assets/floor-parking.png', alt: 'Coated parking deck with lane markings',
-        story: 'A leak into a basement car park or a tenant’s office costs more than the repair. You need predictable execution, minimal disruption and paperwork you can file.',
-        problems: ['Podium leaks into parking below', 'Failing expansion joints', 'Worn or cracked parking decks', 'Recurring roof repairs with no root cause'],
-        gets: ['Assessment planned around your operations', 'Phased, documented execution', 'Records for your facility file'], cta: 'Request a project assessment' },
-      industry: { n: '03', name: 'Industry', who: 'Industrial & enterprise', whoLong: 'industrial clients, developers and architects', title: 'Engineer performance', seg: 'industry',
-        img: './assets/floor-interior.png', alt: 'Seamless interior epoxy floor',
-        story: 'A floor that fails under forklifts or chemicals stops production. You need a system specified for the process, and a partner who can deliver it to programme.',
-        problems: ['Heavy traffic and forklift wear', 'Chemical and thermal exposure', 'Specifications that don’t match site reality', 'Multi-site or phased programmes'],
-        gets: ['Specification support from design stage', 'Performance-led system options', 'Delivery from tender to handover'], cta: 'Discuss a technical requirement' }
-    };
-    var aud = AUD[st.aud];
-    var go = function (k) { return function () { self.setState({ aud: k, idxOpen: false, menuOpen: false }); }; };
-    var auds = ['homes', 'buildings', 'industry'].map(function (k) { var a = AUD[k]; return { n: a.n, name: a.name, who: a.who, cls: k === st.aud ? 'on' : '', sel: k === st.aud, pick: go(k) }; });
+    var fi = st.fin;
+    var finishes = FIN.map(function (f, i) { return { name: f.name, kind: f.kind, tx: f.tx, cls: i === fi ? 'on' : '', sel: i === fi, pick: function () { self.setState({ fin: i }); } }; });
+    var fin = Object.assign({}, FIN[fi], { hasPhoto: !!FIN[fi].photo });
 
     var AREAS = [
-      { id: 'terrace', n: '01', name: 'Terrace', short: 'terrace', zone: 'Roof level', x: 50, y: 13, intro: 'The most exposed surface on the building: sun, heat, monsoon ponding and constant thermal movement.', challenges: ['Ponding from poor slope', 'UV and thermal cycling', 'Cracked screed', 'Failed parapet and outlet details'], systems: ['Liquid-applied PU membranes', 'PU / acrylic hybrid coatings', 'Reinforced detailing at upturns'], site: ['Slope and drainage correction', 'Coving at parapets', 'Outlet and penetration detailing'] },
-      { id: 'bathroom', n: '02', name: 'Bathroom', short: 'wet-area', zone: 'Upper floors', x: 67, y: 29, intro: 'Small areas with outsized consequences: a failed wet area usually shows up on the ceiling below.', challenges: ['Seepage to the floor below', 'Failed tile grout', 'Pipe penetrations', 'Sunken slab saturation'], systems: ['Flexible cementitious membranes', 'PU membranes', 'Epoxy grouting'], site: ['Flood test before tiling', 'Collars at every penetration', 'Correct wall upturn height'] },
-      { id: 'basement', n: '03', name: 'Basement', short: 'basement', zone: 'Below ground', x: 50, y: 82, intro: 'Below ground, water arrives under pressure and from more than one direction.', challenges: ['Hydrostatic pressure', 'Seepage through walls and raft', 'Leaking construction joints', 'Honeycombed concrete'], systems: ['Crystalline waterproofing', 'PU / acrylic injection grouting', 'Cementitious coatings'], site: ['Positive or negative side access', 'Arresting active leaks first', 'Dewatering where needed'] },
-      { id: 'podium', n: '04', name: 'Podium', short: 'podium', zone: 'Podium level', x: 12, y: 51, intro: 'Podiums carry planters, landscaping and foot traffic over occupied or parking space below.', challenges: ['Planter and root intrusion', 'Movement at expansion joints', 'Overburden loads', 'Leaks into parking below'], systems: ['PU / polyurea membranes', 'Root-resistant layers', 'Expansion joint systems'], site: ['Protection boards under overburden', 'Joint detailing', 'Drainage layers'] },
-      { id: 'parking', n: '05', name: 'Parking', short: 'parking', zone: 'Ground level', x: 17, y: 64, intro: 'Parking decks take wheel loads, turning traffic, oil, water and abrasion every day.', challenges: ['Wheel loads and abrasion', 'Oil and chemical spills', 'Water and chloride ingress', 'Faded lane marking'], systems: ['Epoxy deck coatings', 'PU deck coatings', 'Anti-skid broadcast and line marking'], site: ['Substrate strength and moisture testing', 'Phased work around live traffic', 'Joint sealing'] },
-      { id: 'industrial', n: '06', name: 'Industrial floor', short: 'flooring', zone: 'Ground level', x: 39, y: 61, intro: 'Industrial floors are specified for the process: traffic, chemicals, heat and hygiene.', challenges: ['Forklift and heavy traffic', 'Chemical exposure', 'Thermal shock', 'Hygiene requirements'], systems: ['Self-levelling epoxy', 'Epoxy screeds', 'PU concrete systems'], site: ['Substrate moisture and strength', 'Downtime and curing windows', 'Slip-resistance specification'] },
-      { id: 'external', n: '07', name: 'External surfaces', short: 'surface', zone: 'Site', x: 87, y: 59, intro: 'Pathways, driveways and outdoor spaces that have to handle both footfall and rainfall.', challenges: ['Stormwater runoff and pooling', 'Footfall and vehicle wear', 'Heat and weathering'], systems: ['Permeable granule paving', 'Decorative resin surfaces', 'Exterior PU / epoxy decks'], site: ['Sub-base preparation', 'Drainage falls', 'Edge restraint'] }
+      { id: 'terrace', n: '01', p: 'protection', name: 'Terrace & roof', x: 50, y: 13, core: 'p-terrace', notice: 'Damp patches or stains on the top-floor ceiling, worse after heavy rain, and water that stands on the terrace for hours.', intro: 'The most exposed surface on the building: sun, heat, monsoon ponding and constant thermal movement.', challenges: ['Ponding from poor slope', 'UV and thermal cycling', 'Cracked screed', 'Failed parapet and outlet details'], systems: ['Liquid-applied membranes', 'Reinforced detailing at upturns', 'UV-stable topcoats'], site: ['Slope and drainage correction', 'Coving at parapets', 'Outlet and penetration detailing'] },
+      { id: 'bathroom', n: '02', p: 'protection', name: 'Bathrooms & wet areas', x: 67, y: 29, core: 'p-wet', notice: 'A wet patch or peeling paint on the ceiling of the flat below, loose or hollow-sounding tiles, or damp at the foot of the walls.', intro: 'Small areas with outsized consequences: a failed wet area usually shows up on the ceiling below.', challenges: ['Seepage to the floor below', 'Failed tile grout', 'Pipe penetrations', 'Sunken slab saturation'], systems: ['Flexible membranes', 'Sealed penetrations', 'Epoxy grouting'], site: ['Testing before tiling', 'Collars at every penetration', 'Correct wall upturn height'] },
+      { id: 'basement', n: '03', p: 'protection', name: 'Basement & foundation', x: 50, y: 82, core: 'p-base', notice: 'Damp walls, white salt marks, a musty smell, or water seeping in where the floor meets the wall during the monsoon.', intro: 'Below ground, water arrives under pressure and from more than one direction.', challenges: ['Water pressure from the soil', 'Seepage through walls and raft', 'Leaking construction joints', 'Honeycombed concrete'], systems: ['Crystalline treatments', 'Injection grouting', 'Cementitious coatings'], site: ['Which side can be reached', 'Stopping active leaks first', 'Dewatering where needed'] },
+      { id: 'podium', n: '04', p: 'protection', name: 'Podium', x: 12, y: 51, core: '', notice: 'Leaks into the car park or rooms below planters and gardens, or staining along the joints in the slab.', intro: 'Podiums carry planters, landscaping and foot traffic over occupied or parking space below.', challenges: ['Planter and root intrusion', 'Movement at expansion joints', 'Overburden loads', 'Leaks into parking below'], systems: ['Membranes with root-resistant layers', 'Expansion joint systems', 'Protection and drainage layers'], site: ['Protection under overburden', 'Joint detailing', 'Drainage outlets'] },
+      { id: 'walls', n: '05', p: 'protection', name: 'External walls & joints', x: 77, y: 45, core: '', notice: 'Damp patches on inside walls after driving rain, cracks at window and slab edges, or joints that have opened up.', intro: 'Walls and structural joints move and weather. Water gets in where materials meet.', challenges: ['Cracks at interfaces', 'Failed sealants', 'Driving rain', 'Movement joints'], systems: ['Joint sealants and systems', 'Crack treatment', 'Protective wall coatings'], site: ['Interface detailing', 'Movement allowance', 'Access for the work'] },
+      { id: 'parking', n: '06', p: 'protection', name: 'Parking deck', x: 17, y: 64, core: 's-ind', notice: 'A dusty, cracked or worn deck, oil stains that will not clean, fading lane markings, or puddles after rain.', intro: 'Parking decks take wheel loads, turning traffic, oil, water and abrasion every day.', challenges: ['Wheel loads and abrasion', 'Oil and chemical spills', 'Water ingress to the slab', 'Faded lane marking'], systems: ['Epoxy or PU deck systems', 'Anti-skid finishes', 'Line marking and joint sealing'], site: ['Substrate testing', 'Phased work around live traffic', 'Drainage falls'] },
+      { id: 'interior', n: '07', p: 'surfaces', name: 'Interior floors', x: 39, y: 44, core: 's-epoxy', notice: 'A floor that looks tired, is hard to keep clean, has cracked tiles or grout, or simply does not suit the space any more.', intro: 'Living areas, receptions, offices and retail floors, where the surface sets the character of the space.', challenges: ['Worn or dated finishes', 'Grout lines and joints', 'Uneven substrate', 'Moisture from below'], systems: ['Decorative epoxy or PU', 'Terrazzo-style and aggregate finishes', 'Flake and quartz systems'], site: ['Substrate moisture and strength', 'Levelling and repairs', 'Curing time and access'] },
+      { id: 'industrial', n: '08', p: 'surfaces', name: 'Industrial floor', x: 39, y: 61, core: 's-ind', notice: 'A floor that cracks, dusts or breaks up under forklifts, stains from spills, or is hard to keep clean.', intro: 'Industrial floors are specified for the process: traffic, chemicals, heat and hygiene, and still have to look right.', challenges: ['Forklift and heavy traffic', 'Chemical exposure', 'Thermal shock', 'Hygiene requirements'], systems: ['Self-levelling epoxy', 'Epoxy screeds', 'PU concrete systems'], site: ['Substrate moisture and strength', 'Downtime and curing windows', 'Slip-resistance specification'] },
+      { id: 'external', n: '09', p: 'permeable', name: 'External surfaces', x: 89, y: 59, core: 'w-rb', notice: 'Puddles that never drain, slippery or broken paths, or runoff flooding gardens and driveways.', intro: 'Pathways, driveways and outdoor spaces that have to handle both footfall and rainfall. In the right conditions they can let water through.', challenges: ['Runoff and pooling', 'Footfall and vehicle wear', 'Heat and weathering'], systems: ['Resin-bound aggregate on a permeable base', 'Permeable paving', 'Decorative outdoor finishes'], site: ['Soil and groundwater check', 'Sub-base design', 'Edges, falls and outlets'] }
     ];
     var hl = {};
-    var areas = AREAS.map(function (a) { hl[a.id] = a.id === st.area ? 'on' : ''; return Object.assign({}, a, { cls: a.id === st.area ? 'on' : '', sel: a.id === st.area, pick: function () { self.setState({ area: a.id }); } }); });
+    var areas = AREAS.map(function (a) {
+      hl[a.id] = a.id === st.area ? 'on' : '';
+      var pil = a.p;
+      return Object.assign({}, a, { cls: a.id === st.area ? 'on' : '', pcls: pil === 'permeable' ? 'pp' : (pil === 'surfaces' ? 'ps' : ''), sel: a.id === st.area, hasCore: !!a.core, pname: PNAME[pil], pcol: PCOL[pil],
+        pick: function () { self.setState({ area: a.id }); },
+        ask: function () { self.setState({ pickedArea: a.name, need: pil }); },
+        showCore: function () { self.setState({ pillar: pil }); } });
+    });
     var sel = areas.filter(function (a) { return a.id === st.area; })[0] || areas[0];
+
+    var RED = 'var(--signal)';
+    var CORES = [
+      { id: 's-epoxy', p: 'surfaces', n: 'S1', kind: 'Designed surface', name: 'Decorative epoxy', top: '#e2ded7', layers: [{ t: 'Clear or coloured topcoat', h: 8, c: '#efece7', tx: '' }, { t: 'Decorative epoxy body coat', h: 16, c: '#cfc9c0', tx: '' }, { t: 'Primer', h: 6, c: '#e0a43a', tx: '' }, { t: 'Repaired, levelled screed', h: 48, c: '#a39d93', tx: 'speck' }, { t: 'Concrete slab', h: 92, c: '#6e6a64', tx: 'speck' }] },
+      { id: 's-terr', p: 'surfaces', n: 'S2', kind: 'Designed surface', name: 'Terrazzo-style aggregate', top: '#e4ddd1', layers: [{ t: 'Ground & polished face', h: 6, c: '#f0ebe2', tx: '' }, { t: 'Aggregate in matrix', h: 24, c: '#d8cfc0', tx: 'terr' }, { t: 'Primer / bond coat', h: 6, c: '#e0a43a', tx: '' }, { t: 'Screed', h: 46, c: '#a39d93', tx: 'speck' }, { t: 'Concrete slab', h: 88, c: '#6e6a64', tx: 'speck' }] },
+      { id: 's-flake', p: 'surfaces', n: 'S3', kind: 'Designed surface', name: 'Flake & quartz', top: '#b9b4ab', layers: [{ t: 'Sealing topcoat', h: 7, c: '#d9d5ce', tx: '' }, { t: 'Broadcast flake / quartz', h: 14, c: '#b9b4ab', tx: 'flk' }, { t: 'Resin base coat', h: 12, c: '#8f8a83', tx: '' }, { t: 'Primer', h: 6, c: '#e0a43a', tx: '' }, { t: 'Concrete slab', h: 130, c: '#6e6a64', tx: 'speck' }] },
+      { id: 's-ind', p: 'surfaces', n: 'S4', kind: 'Designed surface', name: 'Industrial & parking', top: '#55595e', layers: [{ t: 'Wear-resistant topcoat', h: 10, c: '#6f7378', tx: '' }, { t: 'Epoxy / PU body', h: 18, c: '#55595e', tx: 'gran' }, { t: 'Primer', h: 6, c: '#e0a43a', tx: '' }, { t: 'Concrete slab', h: 138, c: '#6e6a64', tx: 'speck' }] },
+      { id: 'p-terrace', p: 'protection', n: 'P1', kind: 'Protection', name: 'Terrace', top: '#d8d2c7', layers: [{ t: 'UV-stable topcoat', h: 12, c: '#d8d2c7', tx: '' }, { t: 'Waterproof membrane', h: 16, c: RED, tx: '' }, { t: 'Primer', h: 7, c: '#e0a43a', tx: '' }, { t: 'Screed to falls', h: 46, c: '#a39d93', tx: 'speck' }, { t: 'RCC slab', h: 96, c: '#6e6a64', tx: 'speck' }] },
+      { id: 'p-wet', p: 'protection', n: 'P2', kind: 'Protection', name: 'Wet area', top: '#ece8e1', layers: [{ t: 'Tile finish', h: 14, c: '#ece8e1', tx: 'tile' }, { t: 'Tile adhesive', h: 9, c: '#bcb5aa', tx: '' }, { t: 'Flexible membrane', h: 12, c: RED, tx: '' }, { t: 'Sunken fill', h: 64, c: '#8d877e', tx: 'gran' }, { t: 'RCC slab', h: 78, c: '#6e6a64', tx: 'speck' }] },
+      { id: 'p-base', p: 'protection', n: 'P3', kind: 'Protection', name: 'Basement', top: '#4fb3df', layers: [{ t: 'Crystalline treatment', h: 12, c: '#4fb3df', tx: '' }, { t: 'RCC wall / raft', h: 104, c: '#6e6a64', tx: 'speck' }, { t: 'Injection line', h: 8, c: RED, tx: '' }, { t: 'Retained soil', h: 54, c: '#5b4b3b', tx: 'gran' }] },
+      { id: 'w-rb', p: 'permeable', n: 'W1', kind: 'Permeable', name: 'Resin-bound path', top: '#a6927a', layers: [{ t: 'Resin-bound aggregate', h: 18, c: '#a6927a', tx: 'gran' }, { t: 'Permeable base course', h: 30, c: '#4a4440', tx: 'gran' }, { t: 'Open-graded sub-base', h: 70, c: '#3c4549', tx: 'open' }, { t: 'Geotextile', h: 4, c: '#c9c2b6', tx: '' }, { t: 'Tested sub-grade', h: 60, c: '#4b3d30', tx: 'gran' }] },
+      { id: 'w-pave', p: 'permeable', n: 'W2', kind: 'Permeable', name: 'Permeable paving', top: '#8d8780', layers: [{ t: 'Paving with open joints', h: 22, c: '#8d8780', tx: 'tile' }, { t: 'Laying course (grit)', h: 12, c: '#5e544a', tx: 'gran' }, { t: 'Open-graded sub-base', h: 86, c: '#3c4549', tx: 'open' }, { t: 'Geotextile', h: 4, c: '#c9c2b6', tx: '' }, { t: 'Tested sub-grade', h: 52, c: '#4b3d30', tx: 'gran' }] },
+      { id: 'w-lined', p: 'permeable', n: 'W3', kind: 'Permeable', name: 'Lined, no infiltration', top: '#a6927a', layers: [{ t: 'Permeable surface', h: 20, c: '#a6927a', tx: 'gran' }, { t: 'Bedding', h: 10, c: '#5e544a', tx: 'gran' }, { t: 'Sub-base storage', h: 90, c: '#3c4549', tx: 'open' }, { t: 'Impermeable liner + outlet', h: 6, c: '#e8a032', tx: '' }, { t: 'Sub-grade', h: 48, c: '#4b3d30', tx: 'gran' }] }
+    ];
+    var coresShown = CORES.filter(function (c) { return c.p === st.pillar; }).map(function (c) { return Object.assign({}, c, { col: PCOL[c.p] }); });
+    var pillarTabs = ['surfaces', 'protection', 'permeable'].map(function (k) { return { name: PNAME[k], col: PCOL[k], cls: k === st.pillar ? 'on' : '', sel: k === st.pillar, pick: function () { self.setState({ pillar: k }); } }; });
+
+    var PM = {
+      conv: 'Conventional: rain runs across a sealed surface to a drain. Nothing is stored and nothing reaches the ground.',
+      A: 'Full infiltration: water passes through the surface, is held in the sub-base and soaks into the ground. Only where soil tests show it can take the water.',
+      B: 'Partial infiltration: some water soaks in, and an outlet carries the excess away at a controlled rate. For ground that drains slowly.',
+      C: 'No infiltration: a liner keeps water out of the ground, for high groundwater, unstable or contaminated soil. The sub-base still stores water and releases it slowly through an outlet.'
+    };
+    var isPerm = st.pm === 'perm';
+    var pmNote = isPerm ? PM[st.ty] : PM.conv;
+
+    var AUD = {
+      homes: { n: '01', name: 'Homes', who: 'Residential', whoLong: 'homeowners and housing societies', seg: 'homes',
+        story: 'Whether you want a floor that changes how your home feels, a terrace that stops leaking or a driveway that does not flood, start here.',
+        cols: [
+          { p: 'surfaces', title: 'A floor with character', items: ['Decorative epoxy and seamless finishes', 'Terrazzo-style and aggregate floors', 'Balconies, terraces and pool decks'], cta: 'Discuss a floor' },
+          { p: 'protection', title: 'Stop the leak at its cause', items: ['Terrace and roof leakage', 'Bathroom seepage to the flat below', 'Damp basement or ground-floor walls'], cta: 'Discuss a leak' },
+          { p: 'permeable', title: 'Better outdoor surfaces', items: ['Driveways and pathways', 'Gardens and courtyards', 'Permeable options where the site suits'], cta: 'Discuss an outdoor surface' }
+        ] },
+      buildings: { n: '02', name: 'Commercial', who: 'Commercial', whoLong: 'commercial buildings, hospitality, retail and facility managers', seg: 'buildings',
+        story: 'Spaces that need to impress, perform and keep running. We plan around your operations and document what we do.',
+        cols: [
+          { p: 'surfaces', title: 'Floors that carry the brand', items: ['Reception, retail and hospitality floors', 'Office and circulation areas', 'Commercial kitchens and specialist floors'], cta: 'Discuss a floor' },
+          { p: 'protection', title: 'Protect the asset', items: ['Podium and roof waterproofing', 'Parking deck systems', 'Expansion joints and interfaces'], cta: 'Request an assessment' },
+          { p: 'permeable', title: 'External works that drain', items: ['Landscaped and plaza surfaces', 'Pathways and drop-off areas', 'Suitable parking areas'], cta: 'Discuss external works' }
+        ] },
+      industry: { n: '03', name: 'Industry & projects', who: 'Industrial · builders · architects', whoLong: 'industrial clients, developers, builders and architects', seg: 'industry',
+        story: 'From specification to handover: system options, technical detail and delivery across one site or many.',
+        cols: [
+          { p: 'surfaces', title: 'Industrial & specified floors', items: ['Industrial epoxy and PU systems', 'Technical surface specifications', 'Multi-site and phased programmes'], cta: 'Discuss a specification' },
+          { p: 'protection', title: 'Waterproofing packages', items: ['Basements, podiums and roofs', 'Wet areas across a development', 'Joints and structural interfaces'], cta: 'Discuss a package' },
+          { p: 'permeable', title: 'Permeable external works', items: ['Site-wide external surfaces', 'Sub-base and outlet coordination', 'Design-stage advice on suitability'], cta: 'Discuss external works' }
+        ] }
+    };
+    var go = function (k) { return function () { self.setState({ aud: k, idxOpen: false, menuOpen: false }); }; };
+    var auds = ['homes', 'buildings', 'industry'].map(function (k) { var a = AUD[k]; return { n: a.n, name: a.name, who: a.who, cls: k === st.aud ? 'on' : '', sel: k === st.aud, pick: go(k) }; });
+    var aud = AUD[st.aud];
+    var audCols = aud.cols.map(function (c) { return Object.assign({}, c, { pname: PNAME[c.p], col: PCOL[c.p], pick: function () { self.setState({ need: c.p }); } }); });
 
     var CH = [
       { n: '01', k: 'Observe', title: 'Observe the symptom.', alt: 'Section of a terrace over a bedroom, with a damp patch on the ceiling below after rain', narr: 'A damp patch on a bedroom ceiling, worse after every storm. The stain is where the water ends up, not where it gets in.', does: ['Client history: when, where and how often', 'Visual survey of the symptom area', 'Photographs logged to the case file'], get: 'A logged observation' },
@@ -1132,20 +1403,33 @@ class Component extends DCLogic {
     var chapters = CH.map(function (c, i) { var x = i + 1; return Object.assign({}, c, { cls: x === ch ? 'cur' : (x < ch ? 'done' : ''), isCur: x === ch, go: function () { self.setState({ ch: x }); } }); });
     var entries = ENTRIES.map(function (e, i) { var x = i + 1, s = x < ch ? '● Example step' : (x === ch ? '● Shown now' : '○ Not yet shown'); if (x === 5 && ch === 5) s = '● Example workflow complete'; return Object.assign({ isList: false, isText: false, items: [], text: '' }, e, { cls: x < ch ? 'done' : (x === ch ? 'cur' : 'todo'), st: s }); });
 
-    var RED = 'var(--signal)';
-    var CORES = [
-      { n: '01', kind: 'Protection', name: 'Terrace', top: '#d8d2c7', layers: [{ t: 'PU topcoat', h: 12, c: '#d8d2c7', tx: '' }, { t: 'PU membrane', h: 16, c: RED, tx: '' }, { t: 'Primer', h: 7, c: '#e0a43a', tx: '' }, { t: 'Screed to falls', h: 46, c: '#a39d93', tx: 'speck' }, { t: 'RCC slab', h: 96, c: '#6e6a64', tx: 'speck' }] },
-      { n: '02', kind: 'Protection', name: 'Wet area', top: '#ece8e1', layers: [{ t: 'Tile finish', h: 14, c: '#ece8e1', tx: 'tile' }, { t: 'Tile adhesive', h: 9, c: '#bcb5aa', tx: '' }, { t: 'Flexible membrane', h: 12, c: RED, tx: '' }, { t: 'Sunken fill', h: 64, c: '#8d877e', tx: 'gran' }, { t: 'RCC slab', h: 78, c: '#6e6a64', tx: 'speck' }] },
-      { n: '03', kind: 'Protection', name: 'Basement', top: '#4fb3df', layers: [{ t: 'Crystalline treatment', h: 12, c: '#4fb3df', tx: '' }, { t: 'RCC wall / raft', h: 104, c: '#6e6a64', tx: 'speck' }, { t: 'Injection grout line', h: 8, c: RED, tx: '' }, { t: 'Retained soil', h: 54, c: '#5b4b3b', tx: 'gran' }] },
-      { n: '04', kind: 'Surface', name: 'Parking deck', top: '#3d4044', layers: [{ t: 'Anti-skid wearing coat', h: 12, c: '#3d4044', tx: 'gran' }, { t: 'PU / epoxy base coat', h: 14, c: '#5a5e63', tx: '' }, { t: 'Primer', h: 7, c: '#e0a43a', tx: '' }, { t: 'Concrete deck', h: 140, c: '#6e6a64', tx: 'speck' }] },
-      { n: '05', kind: 'Surface', name: 'Decorative floor', top: '#d6cfc2', layers: [{ t: 'Ground & polished finish', h: 18, c: '#d6cfc2', tx: 'speck' }, { t: 'Resin binder', h: 10, c: '#b8ad9b', tx: '' }, { t: 'Screed', h: 54, c: '#a39d93', tx: 'speck' }, { t: 'Slab', h: 90, c: '#6e6a64', tx: 'speck' }] },
-      { n: '06', kind: 'Surface', name: 'Permeable path', top: '#9c8f7c', layers: [{ t: 'Granule surface', h: 26, c: '#9c8f7c', tx: 'gran' }, { t: 'Resin binder', h: 7, c: '#c4b79f', tx: '' }, { t: 'Open sub-base', h: 70, c: '#7d7466', tx: 'gran' }, { t: 'Natural soil', h: 70, c: '#5b4b3b', tx: 'gran' }] }
+    var RECS = [
+      { no: 'CG-AR-0001', t: 'Terrace leak, stain to handover', p: 'protection', ill: true },
+      { no: 'CG-DS-001', t: 'Decorative floor · residential', p: 'surfaces' },
+      { no: 'CG-DS-002', t: 'Aggregate finish · lobby', p: 'surfaces' },
+      { no: 'CG-DS-003', t: 'Industrial floor', p: 'surfaces' },
+      { no: 'CG-BP-001', t: 'Terrace waterproofing', p: 'protection' },
+      { no: 'CG-BP-002', t: 'Basement sealing', p: 'protection' },
+      { no: 'CG-PS-001', t: 'Permeable pathway', p: 'permeable' },
+      { no: 'CG-PS-002', t: 'Resin-bound driveway', p: 'permeable' }
     ];
+    var recs = RECS.filter(function (r) { return st.rec === 'all' || r.p === st.rec; }).map(function (r) { return Object.assign({}, r, { p: PNAME[r.p], col: PCOL[r.p], ill: !!r.ill, prep: !r.ill }); });
+    var recTabs = [['all', 'All', 'var(--m400)'], ['surfaces', PNAME.surfaces, PCOL.surfaces], ['protection', PNAME.protection, PCOL.protection], ['permeable', PNAME.permeable, PCOL.permeable]]
+      .map(function (t) { return { name: t[1], col: t[2], cls: st.rec === t[0] ? 'on' : '', sel: st.rec === t[0], pick: function () { self.setState({ rec: t[0] }); } }; });
+
+    var NEED = {
+      surfaces: { name: 'A designed floor or surface', sub: 'Decorative · specialist · industrial', ask: 'What is the space, and what do you want it to feel like?', ph: 'e.g. 1,200 sq ft living and dining area, want a seamless light floor instead of tiles…' },
+      protection: { name: 'Waterproofing or protection', sub: 'Leaks · damp · joints', ask: 'What are you seeing, and where?', ph: 'e.g. damp patch on the bedroom ceiling below the terrace, worse after rain…' },
+      permeable: { name: 'An outdoor or permeable surface', sub: 'Paths · driveways · landscape', ask: 'Tell us about the outdoor area', ph: 'e.g. driveway that floods in heavy rain, about 600 sq ft, gentle slope…' },
+      unsure: { name: 'Not sure yet', sub: 'We will help you decide', ask: 'Describe the space and the problem', ph: 'Tell us what you want to change or fix, and we will suggest the right route…' }
+    };
+    var needs = ['surfaces', 'protection', 'permeable', 'unsure'].map(function (k) { return { name: NEED[k].name, sub: NEED[k].sub, col: k === 'unsure' ? 'var(--m400)' : PCOL[k], cls: k === st.need ? 'on' : '', sel: k === st.need, pick: function () { self.setState({ need: k }); } }; });
+    var N = NEED[st.need];
 
     var SEG = {
-      homes: { name: 'Home', a: 'Discuss a property issue', b: 'Start with the cause.', intro: 'Tell us what you are seeing and where. We will arrange an assessment and explain the cause before recommending anything.', ask: 'What are you seeing?', ph: 'e.g. damp patch on the bedroom ceiling below the terrace, worse after rain…', cta: 'Send on WhatsApp' },
-      buildings: { name: 'Building', a: 'Request a project assessment', b: 'Planned around your operations.', intro: 'Share the scope and constraints. We will plan an assessment around your operations and return a documented recommendation.', ask: 'Scope and constraints', ph: 'e.g. podium over basement parking, leaks at two expansion joints, night work only…', cta: 'Request assessment' },
-      industry: { name: 'Industry', a: 'Discuss a technical requirement', b: 'From specification to handover.', intro: 'Send the requirement or specification stage. We will respond with system options and the questions we need answered.', ask: 'Technical requirement', ph: 'e.g. 40,000 sq ft warehouse floor, forklift traffic, mild chemical exposure, tender in March…', cta: 'Send requirement' }
+      homes: { name: 'Home', b: 'For your home.', intro: 'Choose what you need, tell us a little about it, and we will arrange a visit and explain our recommendation before quoting.' },
+      buildings: { name: 'Commercial', b: 'Planned around your operations.', intro: 'Share the scope and constraints. We will plan an assessment around your operations and return a documented recommendation.' },
+      industry: { name: 'Industry & projects', b: 'From specification to handover.', intro: 'Send the requirement or project stage. We will respond with system options and the questions we need answered.' }
     };
     var S = SEG[st.aud];
     var second = (this.props.routeBusinessToSecond ?? false) && st.aud !== 'homes';
@@ -1160,26 +1444,36 @@ class Component extends DCLogic {
       toggleIdx: function () { self.setState({ idxOpen: !self.state.idxOpen }); },
       toggleMenu: function () { self.setState({ menuOpen: !self.state.menuOpen, idxOpen: false }); },
       closeAll: function () { self.setState({ idxOpen: false, menuOpen: false }); },
-      gateOpen: !!st.gateOpen,
-      openGate: function () { self.setState({ gateOpen: true, menuOpen: false, idxOpen: false }); },
-      closeGate: function () { self.setState({ gateOpen: false }); },
       goHomes: go('homes'), goBuildings: go('buildings'), goIndustry: go('industry'),
       goHomesSeg: segFn('homes'), goBuildingsSeg: segFn('buildings'), goIndustrySeg: segFn('industry'),
-      audCls: { homes: flag('homes'), buildings: flag('buildings'), industry: flag('industry') },
-      layers: layers, layersTop: layersTop, layer: LAYERS[li],
-      auds: auds, aud: Object.assign({}, aud, { pickSeg: segFn(aud.seg) }),
+      finishes: finishes, fin: fin,
       areas: areas, sel: sel, hl: hl,
+      pmMode: st.pm, pmType: st.ty, isPerm: isPerm, pmNote: pmNote,
+      pmAlt: isPerm ? 'Cutaway of a permeable surface: water passes through the surface into an aggregate sub-base. ' + pmNote : 'Cutaway of a conventional sealed surface: rain runs across the top to a drain.',
+      pmCls: { conv: isPerm ? '' : 'on', perm: isPerm ? 'on' : '' }, pmSel: { conv: !isPerm, perm: isPerm },
+      tyCls: { A: st.ty === 'A' ? 'on' : '', B: st.ty === 'B' ? 'on' : '', C: st.ty === 'C' ? 'on' : '' },
+      setConv: function () { self.setState({ pm: 'conv' }); }, setPerm: function () { self.setState({ pm: 'perm' }); },
+      setA: function () { self.setState({ ty: 'A' }); }, setB: function () { self.setState({ ty: 'B' }); }, setC: function () { self.setState({ ty: 'C' }); },
+      needPermeable: function () { self.setState({ need: 'permeable' }); },
+      pillarTabs: pillarTabs, coresShown: coresShown,
+      auds: auds, aud: aud, audCols: audCols,
       ch: String(ch), chapters: chapters, cur: CH[ch - 1], entries: entries,
       fileStatus: ch === 5 ? 'Example workflow complete' : 'Example · stage ' + ch + ' of 5', atStart: ch === 1, atEnd: ch === 5,
       showMethodNote: !(this.props.methodsApproved ?? false),
       prev: function () { if (self.state.ch > 1) self.setState({ ch: self.state.ch - 1 }); },
       next: function () { if (self.state.ch < 5) self.setState({ ch: self.state.ch + 1 }); },
-      cores: CORES,
+      recs: recs, recTabs: recTabs,
+      needs: needs, needName: N.name, needAsk: N.ask, needPh: N.ph,
       segCls: { homes: flag('homes'), buildings: flag('buildings'), industry: flag('industry') },
       segSel: { homes: st.aud === 'homes', buildings: st.aud === 'buildings', industry: st.aud === 'industry' },
-      isHomes: st.aud === 'homes', isBuildings: st.aud === 'buildings', isIndustry: st.aud === 'industry',
-      segName: S.name, segA: S.a, segB: S.b, segIntro: S.intro, segAsk: S.ask, segPh: S.ph, segCta: S.cta,
-      waTo: waTo, waLabel: second ? '+91 98336 02669' : '+91 98193 30556'
+      isHomes: st.aud === 'homes', notHomes: st.aud !== 'homes', emailLabel: st.aud === 'homes' ? 'Email (optional)' : 'Email',
+      segName: S.name, segB: S.b, segIntro: S.intro,
+      waTo: waTo, waLabel: second ? '+91 98336 02669' : '+91 98193 30556',
+      gateOpen: !!st.gateOpen, pdfSize: '2.8 MB',
+      openGate: function () { self.setState({ gateOpen: true, menuOpen: false, idxOpen: false }); },
+      closeGate: function () { self.setState({ gateOpen: false }); },
+      hasPicked: !!st.pickedArea, pickedArea: st.pickedArea || '',
+      clearPicked: function () { self.setState({ pickedArea: '' }); }
     };
   }
 }

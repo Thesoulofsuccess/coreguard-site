@@ -1,12 +1,13 @@
 # Coreguard
 
-Website for Coreguard — building protection and surface systems (waterproofing, epoxy and PU flooring, decorative and permeable surfaces).
+Website for Coreguard — designed surfaces, building protection and permeable surfaces.
 
 **Live:** https://www.coreguard.in
 
 ## Overview
 - Goal: qualified enquiries from homes, buildings and industry, routed to WhatsApp
-- Sections: hero (scanner lens), the system, audience journeys, system map, the Coreguard Diagnostic, capabilities, materials, project record, contact, privacy notice
+- Sections: hero (three pillars), designed surfaces, building protection (system map), permeable surfaces (cutaway), how systems are built, starting point, the Diagnostic, materials & technology, projects, contact, privacy notice
+- Company profile PDF: public/Coreguard-Company-Profile.pdf (8 pages, same three pillars)
 - Stack: static HTML/CSS/JS, no build step. `support.js` renders the page; React 18.3.1 (MIT) is bundled in `public/vendor/`.
 
 ## Before launch
