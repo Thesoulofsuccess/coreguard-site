@@ -1,20 +1,28 @@
-# Coreguard
+# coreguard.in
 
-Website for Coreguard — designed surfaces, building protection and permeable surfaces.
+Static site served by Cloudflare from `public/` (see `wrangler.jsonc`). Push the whole folder; delete anything in the repo's `public/` that is not in this package.
 
-**Live:** https://www.coreguard.in
+## Pages
+- `index.html` — homepage: film hero, Collections, Building protection, Permeable, How we work, enquiry
+- `designed-surfaces.html`, `building-protection.html`, `permeable-surfaces.html` — pillar pages
+- `privacy.html` — privacy notice
+- `sitemap.xml`, `robots.txt` — for search engines (submit the sitemap in Google Search Console)
 
-## Overview
-- Goal: qualified enquiries from homes, buildings and industry, routed to WhatsApp
-- Sections: hero (three pillars), designed surfaces, building protection (system map), permeable surfaces (cutaway), how systems are built, starting point, the Diagnostic, materials & technology, projects, contact, privacy notice
-- Company profile PDF: public/Coreguard-Company-Profile.pdf (8 pages, same three pillars)
-- Stack: static HTML/CSS/JS, no build step. `support.js` renders the page; React 18.3.1 (MIT) is bundled in `public/vendor/`.
+Each page carries a pre-rendered HTML copy of its content (`<div id="ssr">`), so search engines and link previews can read it without JavaScript. It is swapped for the live page as soon as the scripts start.
 
-## Before launch
-- Privacy notice is a draft: confirm retention period, responsible person and response time, and have it legally reviewed (DPDP Act, 2023)
-- Diagnostic methods are marked "Pending approval" until the technical team confirms them
-- Project records are "In preparation" until real evidence is available
-- The "Prototype" label is on by default (`showBanner` in the page's settings)
+## Hero
+- `hero-film.js` — the film (Desire, Craft, Reveal, Possibilities), pause, chapters, finish picker, Collections tabs
+- `hero-block.js` — the 3D cutaway (uses `vendor/three.min.js`)
+- `cg-hero.css` — hero and Collections styles
+- `assets/hero/` — rendered scenes, depth maps (`d-*.jpg`), card images, Collections tiles (`c/`)
 
-## Deploy
-Static assets in `public/`, served by Cloudflare via `wrangler.jsonc`.
+## Shared
+- `cg-site.css`, `cg-site.js` — site styles; header, forms, brochure download
+  - `CG_ENDPOINT` in `cg-site.js`: paste a form endpoint (Web3Forms, Formspree…) to also receive enquiries by email.
+
+## Before launch, replace or confirm
+- Collections tiles marked "Inspiration image" and the pathway concept visual are not Coreguard projects.
+- Tiles marked "Photo · ownership to confirm": confirm these are Coreguard's own work.
+- Only list finish categories Coreguard supplies and executes.
+- Build-ups are illustrative until approved by the technical team.
+- Privacy notice: legal review.
