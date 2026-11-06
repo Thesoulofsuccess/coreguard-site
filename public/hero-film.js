@@ -191,7 +191,7 @@
 })();
 
 (function () {
-  function pick(t) { var list = t.closest('[role="tablist"]'); list.querySelectorAll('[role="tab"]').forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; var p = document.getElementById(x.getAttribute('aria-controls')); if (p) p.hidden = !on; }); }
+  function pick(t) { var list = t.closest('[role="tablist"]'); list.querySelectorAll('[role="tab"]').forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; var p = document.getElementById(x.getAttribute('aria-controls')); if (p) p.classList.toggle('on', on); }); }
   document.addEventListener('click', function (e) { var t = e.target.closest && e.target.closest('.hx [role="tab"]'); if (t) pick(t); });
   document.addEventListener('keydown', function (e) {
     var t = e.target.closest && e.target.closest('.hx [role="tab"]'); if (!t) return;
