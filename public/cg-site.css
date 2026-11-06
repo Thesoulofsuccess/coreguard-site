@@ -80,7 +80,7 @@
     .prog { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--signal); transform-origin: left; transform: scaleX(var(--p, 0)); }
     .menu-b { display: none; height: 36px; padding: 0 12px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
     .sheet { position: fixed; z-index: 49; top: var(--hdr); left: 0; right: 0; bottom: 0; background: var(--paper); overflow-y: auto; padding: 16px var(--gut) 96px; }
-    .sheet a { display: grid; grid-template-columns: 48px minmax(0, 1fr); align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--ll); text-decoration: none; }
+    .sheet a { display: block; padding: 14px 0; border-bottom: 1px solid var(--ll); text-decoration: none; }
     .sheet a .t { font-weight: 600; font-size: 26px; letter-spacing: -0.035em; }
     .sheet a .mono { color: var(--signal); }
     .mbar { display: none; }
